@@ -13,12 +13,23 @@ struct CallsTabScreen: View {
     @State private var callHistory: CallHistory = CallHistory.all
     
     var body: some View {
+        
         NavigationStack {
             List {
                 Section {
                     CreateCallLinkSection()
                 }
-                
+                Section {
+                    ForEach(0..<12) { _ in
+                        RecentCallItemView()
+                    }
+                } header: {
+                    Text("Recent")
+                        .textCase(nil)
+                        .font(.headline)
+                        .bold()
+                        .foregroundStyle(.whatsAppBlack)
+                }
             }
             .navigationTitle("Calls")
             .searchable(text: $searchText)
@@ -28,6 +39,7 @@ struct CallsTabScreen: View {
                 trailingNavItem()
             }
         }
+        
     }
 }
 
@@ -96,6 +108,41 @@ private struct CreateCallLinkSection: View {
         }
     }
 }
+
+private struct RecentCallItemView: View {
+    var body: some View {
+        HStack {
+            Circle()
+                .frame(width: 45, height: 45)
+            
+            recentCallsTextView()
+            
+            Spacer()
+            
+            Text("Yesterday")
+                .foregroundStyle(.gray)
+                .font(.system(size: 16))
+            
+            Image(systemName: "info.circle")
+        }
+        
+        
+    }
+    
+    private func recentCallsTextView() -> some View {
+        VStack(alignment: .leading) {
+            Text("John Smith")
+            
+            HStack(spacing: 5) {
+                Image(systemName: "phone.arrow.up.right.fill")
+                Text("Outgoing")
+            }
+            .font(.system(size: 14))
+            .foregroundStyle(.gray)
+        }
+    }
+}
+
 #Preview {
     CallsTabScreen()
 }
