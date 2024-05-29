@@ -15,6 +15,9 @@
 		9D1361C12C05A4DB0001A811 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9D1361C02C05A4DB0001A811 /* FirebaseStorage */; };
 		9D1361C92C05A7FE0001A811 /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D1361C82C05A7FE0001A811 /* GoogleService-Info.plist */; };
 		9D1361CC2C05A8220001A811 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1361CB2C05A8220001A811 /* LoginScreen.swift */; };
+		9D18DD102C06EDC200CB5B54 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D18DD0F2C06EDC200CB5B54 /* AuthHeaderView.swift */; };
+		9D18DD122C06EE8000CB5B54 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D18DD112C06EE8000CB5B54 /* AuthTextField.swift */; };
+		9D18DD142C06F30B00CB5B54 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D18DD132C06F30B00CB5B54 /* AuthButton.swift */; };
 		9D2724A02BF5CB9B003BFDA1 /* WhatsAppCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D27249F2BF5CB9B003BFDA1 /* WhatsAppCloneApp.swift */; };
 		9D2724A42BF5CB9D003BFDA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D2724A32BF5CB9D003BFDA1 /* Assets.xcassets */; };
 		9D2724A72BF5CB9D003BFDA1 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D2724A62BF5CB9D003BFDA1 /* Preview Assets.xcassets */; };
@@ -62,6 +65,9 @@
 		9D1361B52C059D070001A811 /* BubbleAudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleAudioView.swift; sourceTree = "<group>"; };
 		9D1361C82C05A7FE0001A811 /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; name = "GoogleService-Info.plist"; path = "../../../../Downloads/GoogleService-Info.plist"; sourceTree = "<group>"; };
 		9D1361CB2C05A8220001A811 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		9D18DD0F2C06EDC200CB5B54 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
+		9D18DD112C06EE8000CB5B54 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
+		9D18DD132C06F30B00CB5B54 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		9D27249C2BF5CB9B003BFDA1 /* WhatsAppClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsAppClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D27249F2BF5CB9B003BFDA1 /* WhatsAppCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsAppCloneApp.swift; sourceTree = "<group>"; };
 		9D2724A32BF5CB9D003BFDA1 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
@@ -133,6 +139,9 @@
 			isa = PBXGroup;
 			children = (
 				9D1361CB2C05A8220001A811 /* LoginScreen.swift */,
+				9D18DD0F2C06EDC200CB5B54 /* AuthHeaderView.swift */,
+				9D18DD112C06EE8000CB5B54 /* AuthTextField.swift */,
+				9D18DD132C06F30B00CB5B54 /* AuthButton.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -483,8 +492,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				9D2724CC2BF5D457003BFDA1 /* UpdatesTabScreen.swift in Sources */,
+				9D18DD142C06F30B00CB5B54 /* AuthButton.swift in Sources */,
 				9D6F9DC22BF72480008D11E3 /* CallsTabScreen.swift in Sources */,
 				9DF418952BFC6A6700B9C9E9 /* SettingsTabScreen.swift in Sources */,
+				9D18DD102C06EDC200CB5B54 /* AuthHeaderView.swift in Sources */,
 				9D4FDAF62BFB9D6600B3723C /* CommunityTabScreen.swift in Sources */,
 				9D8C9F452BFDBDC700FC255E /* MessageListController.swift in Sources */,
 				9D8C9F432BFDB78900FC255E /* TextInputArea.swift in Sources */,
@@ -496,6 +507,7 @@
 				9D1361CC2C05A8220001A811 /* LoginScreen.swift in Sources */,
 				9D8C9F412BFDB59000FC255E /* ChatRoomScreen.swift in Sources */,
 				9DF418972BFC6AC000B9C9E9 /* SettingsItemView.swift in Sources */,
+				9D18DD122C06EE8000CB5B54 /* AuthTextField.swift in Sources */,
 				9DADE27A2BFF08DF00554295 /* BubbleTextView.swift in Sources */,
 				9DADE2782BFF081400554295 /* MessageItem.swift in Sources */,
 				9DA4014B2BFC656E0098A303 /* ChannelItemView.swift in Sources */,
