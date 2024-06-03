@@ -23,7 +23,7 @@ struct WhatsAppCloneApp: App {
 
     var body: some Scene {
         WindowGroup {
-            LoginScreen()
+            RootScreen()
         }
     }
 }

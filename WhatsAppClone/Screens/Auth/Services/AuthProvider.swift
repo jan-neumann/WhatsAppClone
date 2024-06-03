@@ -43,14 +43,20 @@ extension AuthError: LocalizedError {
 
 final class AuthManager: AuthProvider {
     
-    private init() {}
+    private init() {
+        Task { await autoLogin() }
+    }
     
     static let shared: AuthProvider = AuthManager()
     
     var authState = CurrentValueSubject<AuthState, Never>(.pending)
     
     func autoLogin() async {
-        
+        if Auth.auth().currentUser == nil {
+            authState.send(.loggedOut)
+        } else {
+            fetchCurrentUserInfo()
+        }
     }
     
     func login(with email: String, and password: String) async throws {
@@ -71,34 +77,37 @@ final class AuthManager: AuthProvider {
     }
     
     func logOut() async throws {
-        
+        do {
+            try Auth.auth().signOut()
+            authState.send(.loggedOut)
+            print("🔐 Successfully logged out!")
+        } catch {
+            print("🔐 Failed to log out current user: \(error.localizedDescription)")
+        }
     }
 }
 
 extension AuthManager {
     private func saveUserInfoDatabase(user: UserItem) async throws {
         do {
-            let userDictionary = ["uid": user.uid, "username": user.username, "email": user.email]
-            try await Database.database().reference().child("users").child(user.uid).setValue(userDictionary)
+            let userDictionary = [String.uid: user.uid, String.username: user.username, String.email: user.email]
+            try await FirebaseConstants.UserRef.child(user.uid).setValue(userDictionary)
         } catch {
             print("🔐 Failed to Save Created User Info to Database: \(error.localizedDescription)")
             throw AuthError.failedToSaveUserInfo(error.localizedDescription)
         }
     }
-}
-
-struct UserItem: Identifiable, Hashable, Decodable {
-    let uid: String
-    let username: String
-    let email: String
-    var bio: String?
-    var profileImageUrl: String? = nil
     
-    var id: String {
-        return uid
-    }
-    
-    var bioUnwrapped: String {
-        return bio ?? "Hey there! I am using WhatsUp."
+    private func fetchCurrentUserInfo() {
+        guard let currentUid = Auth.auth().currentUser?.uid else { return }
+        FirebaseConstants.UserRef.child(currentUid).observe(.value) { [weak self] snapshot in
+            
+            guard let userDict = snapshot.value as? [String: Any] else { return }
+            let loggedInUser = UserItem(dictionary: userDict)
+            self?.authState.send(.loggedIn(loggedInUser))
+            print("🔐 \(loggedInUser.username) is logged in")
+        } withCancel: { error in
+            print("Failed to get current user info")
+        }
     }
 }
