@@ -21,6 +21,8 @@ struct UserItem: Identifiable, Hashable, Decodable {
     var bioUnwrapped: String {
         return bio ?? "Hey there! I am using WhatsUp."
     }
+    
+    static let placeHolder = UserItem(uid: "1234567", username: "QaUser111", email: "qa_user_111@test.org")
 }
 
 extension UserItem {
