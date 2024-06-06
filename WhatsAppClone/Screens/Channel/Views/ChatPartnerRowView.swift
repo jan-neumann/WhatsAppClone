@@ -7,9 +7,15 @@
 
 import SwiftUI
 
-struct ChatPartnerRowView: View {
+struct ChatPartnerRowView<Content: View>: View {
     
-    let user: UserItem
+    private let user: UserItem
+    private let trailingItems: Content
+    
+    init(user: UserItem, @ViewBuilder trailingItems: () -> Content = { EmptyView() }) {
+        self.user = user
+        self.trailingItems = trailingItems()
+    }
     
     var body: some View {
         HStack {
@@ -27,11 +33,13 @@ struct ChatPartnerRowView: View {
                 
             }
             
-//            checkmark()
+            trailingItems
         }
     }
 }
 
 #Preview {
-    ChatPartnerRowView(user: .placeHolder)
+    ChatPartnerRowView(user: .placeHolder) {
+        Image(systemName: "xmark")
+    }
 }

@@ -23,6 +23,19 @@ struct UserItem: Identifiable, Hashable, Decodable {
     }
     
     static let placeHolder = UserItem(uid: "1234567", username: "QaUser111", email: "qa_user_111@test.org")
+    
+    static let placeHolders: [UserItem] = [
+        .init(uid: "1", username: "Jan", email: "janneu@gmx.net"),
+        .init(uid: "2", username: "JohnDoe", email: "johndoe@example.com", bio: "Hello, I'm John."),
+        .init(uid: "3", username: "JaneSmith", email: "janesmith@example.com", bio: "Passionate about coding."),
+        .init(uid: "4", username: "Alice", email: "alice@gmail.com", bio: "Tech enthusiast."),
+        .init(uid: "5", username: "Bob", email: "bob@example.com", bio: "Lover of nature."),
+        .init(uid: "6", username: "Ella", email: "ella@hotmail.com", bio: "Dreamer"),
+        .init(uid: "7", username: "Michael", email: "michael@gmail.com"),
+        .init(uid: "8", username: "Sophie", email: "sophie@example.com", bio: "Coffee addict ☕️"),
+        .init(uid: "9", username: "David", email: "david@gmail.com", bio: "Music lover."),
+        .init(uid: "10", username: "Emiliy", email: "emily@example.com", bio: "Travel enthusiast."),
+    ]
 }
 
 extension UserItem {
