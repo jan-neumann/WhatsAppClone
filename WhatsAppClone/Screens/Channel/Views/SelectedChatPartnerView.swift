@@ -8,10 +8,15 @@
 import SwiftUI
 
 struct SelectedChatPartnerView: View {
+    
+    let users: [UserItem]
+    let onTapHandler: (_ user: UserItem) -> Void
+    
     var body: some View {
+
         ScrollView(.horizontal, showsIndicators: false) {
             HStack {
-                ForEach(UserItem.placeHolders) { item in
+                ForEach(users) { item in
                     chatPartnerView(item)
                 }
             }
@@ -24,16 +29,16 @@ struct SelectedChatPartnerView: View {
                 .fill(.gray)
                 .frame(width: 60, height: 60)
                 .overlay(alignment: .topTrailing) {
-                    cancelButton()
+                    cancelButton(user)
                 }
             
             Text(user.username)
         }
     }
     
-    private func cancelButton() -> some View {
+    private func cancelButton(_ user: UserItem) -> some View {
         Button {
-            
+            onTapHandler(user)
         } label: {
             Image(systemName: "xmark")
                 .imageScale(.small)
@@ -47,5 +52,7 @@ struct SelectedChatPartnerView: View {
 }
 
 #Preview {
-    SelectedChatPartnerView()
+    SelectedChatPartnerView(users: UserItem.placeHolders) { _ in
+        
+    }
 }

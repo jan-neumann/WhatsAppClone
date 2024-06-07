@@ -50,6 +50,7 @@
 		9DD6CAD52C0D8A53006234F6 /* RootScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6CAD42C0D8A53006234F6 /* RootScreenModel.swift */; };
 		9DD6CAD82C0D90C2006234F6 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6CAD72C0D90C2006234F6 /* UserItem.swift */; };
 		9DD6CADB2C0D9149006234F6 /* FirebaseConstants.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6CADA2C0D9149006234F6 /* FirebaseConstants.swift */; };
+		9DE075902C12D3A70060975D /* NewGroupSetupScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DE0758F2C12D3A70060975D /* NewGroupSetupScreen.swift */; };
 		9DEEC2F32C0450210042DBF5 /* BubbleImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DEEC2F22C0450210042DBF5 /* BubbleImageView.swift */; };
 		9DF418952BFC6A6700B9C9E9 /* SettingsTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF418942BFC6A6700B9C9E9 /* SettingsTabScreen.swift */; };
 		9DF418972BFC6AC000B9C9E9 /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF418962BFC6AC000B9C9E9 /* SettingsItemView.swift */; };
@@ -115,6 +116,7 @@
 		9DD6CAD42C0D8A53006234F6 /* RootScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreenModel.swift; sourceTree = "<group>"; };
 		9DD6CAD72C0D90C2006234F6 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
 		9DD6CADA2C0D9149006234F6 /* FirebaseConstants.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseConstants.swift; sourceTree = "<group>"; };
+		9DE0758F2C12D3A70060975D /* NewGroupSetupScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = NewGroupSetupScreen.swift; sourceTree = "<group>"; };
 		9DEEC2F22C0450210042DBF5 /* BubbleImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleImageView.swift; sourceTree = "<group>"; };
 		9DF418942BFC6A6700B9C9E9 /* SettingsTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabScreen.swift; sourceTree = "<group>"; };
 		9DF418962BFC6AC000B9C9E9 /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
@@ -356,6 +358,7 @@
 				9D07CAD32C102B52007E2A12 /* ChatPartnerRowView.swift */,
 				9D07CAD82C1033D4007E2A12 /* GroupPartnerPickerScreen.swift */,
 				9D8DE2942C1186070009FC30 /* SelectedChatPartnerView.swift */,
+				9DE0758F2C12D3A70060975D /* NewGroupSetupScreen.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -613,6 +616,7 @@
 				9D07CAD22C1028A2007E2A12 /* ChatPartnerPickerScreen.swift in Sources */,
 				9DEEC2F32C0450210042DBF5 /* BubbleImageView.swift in Sources */,
 				9DADE2752BFF060F00554295 /* MessageListView.swift in Sources */,
+				9DE075902C12D3A70060975D /* NewGroupSetupScreen.swift in Sources */,
 				9D1361CC2C05A8220001A811 /* LoginScreen.swift in Sources */,
 				9D8C9F412BFDB59000FC255E /* ChatRoomScreen.swift in Sources */,
 				9D07CAD42C102B52007E2A12 /* ChatPartnerRowView.swift in Sources */,

@@ -17,7 +17,9 @@ struct GroupPartnerPickerScreen: View {
         List {
             
             if viewModel.showSelectedUsers {
-                Text("Users Selected")
+                SelectedChatPartnerView(users: viewModel.selectedChatPartners) { user in
+                    viewModel.handleItemSelection(user)
+                }
             }
             
             Section {
@@ -36,6 +38,10 @@ struct GroupPartnerPickerScreen: View {
                     placement: .navigationBarDrawer(displayMode: .always),
                     prompt: "Search name or number"
         )
+        .toolbar {
+            titleView()
+            trailingNavItem()
+        }
     }
     
     private func chatPartnerRowView(_ user: UserItem) -> some View {
@@ -47,6 +53,34 @@ struct GroupPartnerPickerScreen: View {
             Image(systemName: imageName)
                 .foregroundStyle(foregroundStyle)
                 .imageScale(.large)
+        }
+    }
+}
+
+extension GroupPartnerPickerScreen {
+    @ToolbarContentBuilder
+    private func titleView() -> some ToolbarContent {
+        ToolbarItem(placement: .principal) {
+            VStack {
+                Text("Add Participants")
+                    .bold()
+                let count = viewModel.selectedChatPartners.count
+                let maxcount = ChannelConstants.maxGroupParticipants
+                Text("\(count)/\(maxcount)")
+                    .foregroundStyle(.gray)
+                    .font(.footnote)
+            }
+        }
+    }
+    
+    @ToolbarContentBuilder
+    private func trailingNavItem() -> some ToolbarContent {
+        ToolbarItem(placement: .topBarTrailing) {
+            Button("Next") {
+                viewModel.navStack.append(.setUpGroupChat)
+            }
+            .bold()
+            .disabled(viewModel.disableNextButton)
         }
     }
 }
