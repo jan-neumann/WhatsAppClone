@@ -8,7 +8,6 @@
 import SwiftUI
 
 struct NewGroupSetupScreen: View {
-    
     @State private var channelName = ""
     @ObservedObject var viewModel: ChatPartnerPickerViewModel
     
@@ -28,29 +27,45 @@ struct NewGroupSetupScreen: View {
                     viewModel.handleItemSelection(user)
                 }
             } header: {
-                Text("Participants: \(viewModel.selectedChatPartners.count)/\(1)")
+                let count = viewModel.selectedChatPartners.count
+                let maxCount = ChannelConstants.maxGroupParticipants
+                
+                Text("Participants: \(count) of \(maxCount)")
                     .bold()
             }
             .listRowBackground(Color.clear)
            
           
         }
-      
         .navigationTitle("New Group")
         .toolbar {
             trailingNavItem()
         }
+        
     }
     
     private func channelSetupHeaderView() -> some View {
         HStack {
-            Circle()
-                .frame(width: 60, height: 60)
+            profileImageView()
             
             TextField("", text: $channelName,
                       prompt: Text("Group Name (optional)"),
                       axis: .vertical
             )
+        }
+    }
+    
+    private func profileImageView() -> some View {
+        Button {
+            
+        } label: {
+            ZStack {
+                Image(systemName: "camera.fill")
+                    .imageScale(.large)
+            }
+            .frame(width: 60, height: 60)
+            .background(Color(.systemGray6))
+            .clipShape(.circle)
         }
     }
 }
