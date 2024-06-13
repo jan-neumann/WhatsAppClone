@@ -33,6 +33,8 @@
 		9D2724CC2BF5D457003BFDA1 /* UpdatesTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2724CB2BF5D457003BFDA1 /* UpdatesTabScreen.swift */; };
 		9D4FDAF62BFB9D6600B3723C /* CommunityTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4FDAF52BFB9D6600B3723C /* CommunityTabScreen.swift */; };
 		9D5CD7C32C199E80005E8A07 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5CD7C22C199E80005E8A07 /* UserService.swift */; };
+		9D63FD242C1AD5460056519B /* ChannelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63FD232C1AD5460056519B /* ChannelItem.swift */; };
+		9D63FD262C1AD9430056519B /* ChannelTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63FD252C1AD9430056519B /* ChannelTabViewModel.swift */; };
 		9D6F9DC22BF72480008D11E3 /* CallsTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F9DC12BF72480008D11E3 /* CallsTabScreen.swift */; };
 		9D8C9F412BFDB59000FC255E /* ChatRoomScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C9F402BFDB59000FC255E /* ChatRoomScreen.swift */; };
 		9D8C9F432BFDB78900FC255E /* TextInputArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C9F422BFDB78900FC255E /* TextInputArea.swift */; };
@@ -100,6 +102,8 @@
 		9D2724CB2BF5D457003BFDA1 /* UpdatesTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTabScreen.swift; sourceTree = "<group>"; };
 		9D4FDAF52BFB9D6600B3723C /* CommunityTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTabScreen.swift; sourceTree = "<group>"; };
 		9D5CD7C22C199E80005E8A07 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
+		9D63FD232C1AD5460056519B /* ChannelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelItem.swift; sourceTree = "<group>"; };
+		9D63FD252C1AD9430056519B /* ChannelTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTabViewModel.swift; sourceTree = "<group>"; };
 		9D6F9DC12BF72480008D11E3 /* CallsTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsTabScreen.swift; sourceTree = "<group>"; };
 		9D8C9F402BFDB59000FC255E /* ChatRoomScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomScreen.swift; sourceTree = "<group>"; };
 		9D8C9F422BFDB78900FC255E /* TextInputArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputArea.swift; sourceTree = "<group>"; };
@@ -159,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				9D07CAD62C103186007E2A12 /* ChatPartnerPickerViewModel.swift */,
+				9D63FD252C1AD9430056519B /* ChannelTabViewModel.swift */,
 			);
 			path = ViewModel;
 			sourceTree = "<group>";
@@ -313,6 +318,7 @@
 		9D4FDAF22BFB9D0E00B3723C /* Channel */ = {
 			isa = PBXGroup;
 			children = (
+				9D63FD222C1AD5320056519B /* Models */,
 				9D07CAD52C10315E007E2A12 /* ViewModel */,
 				9DA401472BFC62120098A303 /* Views */,
 			);
@@ -334,6 +340,14 @@
 				9D5CD7C22C199E80005E8A07 /* UserService.swift */,
 			);
 			path = Service;
+			sourceTree = "<group>";
+		};
+		9D63FD222C1AD5320056519B /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				9D63FD232C1AD5460056519B /* ChannelItem.swift */,
+			);
+			path = Models;
 			sourceTree = "<group>";
 		};
 		9D8C9F3E2BFDB55D00FC255E /* Chat */ = {
@@ -613,6 +627,7 @@
 				9D6F9DC22BF72480008D11E3 /* CallsTabScreen.swift in Sources */,
 				9DD6CAD82C0D90C2006234F6 /* UserItem.swift in Sources */,
 				9DF418952BFC6A6700B9C9E9 /* SettingsTabScreen.swift in Sources */,
+				9D63FD262C1AD9430056519B /* ChannelTabViewModel.swift in Sources */,
 				9D18DD102C06EDC200CB5B54 /* AuthHeaderView.swift in Sources */,
 				9DD6CADB2C0D9149006234F6 /* FirebaseConstants.swift in Sources */,
 				9DB7D7A22C0849BB0007A832 /* AuthProvider.swift in Sources */,
@@ -621,6 +636,7 @@
 				9D8C9F432BFDB78900FC255E /* TextInputArea.swift in Sources */,
 				9DADE27C2BFF099D00554295 /* BubbleTailView.swift in Sources */,
 				9DD6CAD22C0D8A41006234F6 /* RootScreen.swift in Sources */,
+				9D63FD242C1AD5460056519B /* ChannelItem.swift in Sources */,
 				9DA401492BFC62290098A303 /* ChannelTabScreen.swift in Sources */,
 				9D18DD162C06F80200CB5B54 /* SignUpScreen.swift in Sources */,
 				9D2724A02BF5CB9B003BFDA1 /* WhatsAppCloneApp.swift in Sources */,

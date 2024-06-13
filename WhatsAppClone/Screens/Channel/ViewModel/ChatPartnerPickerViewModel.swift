@@ -6,6 +6,7 @@
 //
 
 import Foundation
+import Firebase
 
 enum ChannelCreationRoute {
     case groupPartnerPicker
@@ -48,7 +49,10 @@ final class ChatPartnerPickerViewModel: ObservableObject {
     func fetchUsers() async {
         do {
             let userNode = try await UserService.paginateUsers(lastCursor: lastCursor, pageSize: 5)
-            self.users.append(contentsOf: userNode.users)
+            var fetchedUsers = userNode.users
+            guard let currentUid = Auth.auth().currentUser?.uid else { return }
+            fetchedUsers = fetchedUsers.filter({ $0.uid != currentUid })
+            self.users.append(contentsOf:fetchedUsers)
             self.lastCursor = userNode.currentCursor
             print("💿 lastCursor: \(String(describing: lastCursor)) \(users.count)")
         } catch {
@@ -71,5 +75,9 @@ final class ChatPartnerPickerViewModel: ObservableObject {
         let isSelected = selectedChatPartners.contains(where: { $0.uid == user.uid })
         return isSelected
     }
+    
+//    func buildDirectChannel() async -> Result<ChannelItem, Error> {
+//        
+//    }
     
 }
