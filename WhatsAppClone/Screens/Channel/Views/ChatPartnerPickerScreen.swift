@@ -84,7 +84,7 @@ extension ChatPartnerPickerScreen {
         case .groupPartnerPicker:
             GroupPartnerPickerScreen(viewModel: viewModel)
         case .setUpGroupChat:
-            NewGroupSetupScreen(viewModel: viewModel)
+            NewGroupSetupScreen(viewModel: viewModel, onCreate: onCreate)
         }
     }
 }
