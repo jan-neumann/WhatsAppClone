@@ -27,6 +27,7 @@ final class ChatPartnerPickerViewModel: ObservableObject {
     @Published var navStack = [ChannelCreationRoute]()
     @Published var selectedChatPartners = [UserItem]()
     @Published private(set) var users = [UserItem]()
+    @Published var errorState: (showError: Bool, errorMessage: String) = (false, "Uh Oh")
     
     private var lastCursor: String?
     
@@ -69,6 +70,12 @@ final class ChatPartnerPickerViewModel: ObservableObject {
         }
     }
     
+    func deselectAllChatPartners() {
+        DispatchQueue.main.asyncAfter(deadline: .now() + 0.5) {
+            self.selectedChatPartners.removeAll()
+        }
+    }
+    
     func handleItemSelection(_ item: UserItem) {
         if isUserSelected(item) {
             // deselect
@@ -76,6 +83,11 @@ final class ChatPartnerPickerViewModel: ObservableObject {
             selectedChatPartners.remove(at: index)
         } else {
             // select
+            guard selectedChatPartners.count < ChannelConstants.maxGroupParticipants else {
+                errorState.errorMessage = "Sorry, we only allow a maximum of \(ChannelConstants.maxGroupParticipants) participants in a group chat."
+                errorState.showError = true
+                return
+            }
             selectedChatPartners.append(item)
         }
     }
@@ -83,6 +95,17 @@ final class ChatPartnerPickerViewModel: ObservableObject {
     func isUserSelected(_ user: UserItem) -> Bool {
         let isSelected = selectedChatPartners.contains(where: { $0.uid == user.uid })
         return isSelected
+    }
+    
+    func createDirectChannel(_ chatPartner: UserItem, completion: @escaping (_ newChannel: ChannelItem) -> Void) {
+        selectedChatPartners.append(chatPartner)
+        let channelCreation = createChannel(channelName: nil)
+        switch channelCreation {
+        case .success(let channel):
+            completion(channel)
+        case .failure(let error):
+            print("Failed to create a Direct Channel: \(error.localizedDescription)")
+        }
     }
     
     func createGroupChannel(_ groupName: String?, completion: @escaping (_ newChannel: ChannelItem) -> Void) {
@@ -96,15 +119,15 @@ final class ChatPartnerPickerViewModel: ObservableObject {
         }
     }
     
-    func createChannel(channelName: String?) -> Result<ChannelItem, Error> {
+    private func createChannel(channelName: String?) -> Result<ChannelItem, Error> {
         
         guard !selectedChatPartners.isEmpty else {
             return .failure(ChannelCreationError.noChatPartner)
         }
         
         guard let channelId = FirebaseConstants.ChannelsRef.childByAutoId().key,
-              let currentUid = Auth.auth().currentUser?.uid
-                //              let messageId = FirebaseConstants.MessagesRef.childByAutoId().key else {
+              let currentUid = Auth.auth().currentUser?.uid,
+              let messageId = FirebaseConstants.MessagesRef.childByAutoId().key
         else {
             return .failure(ChannelCreationError.failedToCreateUniqueIds)
         }
@@ -113,9 +136,12 @@ final class ChatPartnerPickerViewModel: ObservableObject {
         var membersUids = selectedChatPartners.compactMap({ $0.uid })
         membersUids.append(currentUid)
         
+        print("membersUids: \(membersUids.count)")
+        let newChannelBroadcast = AdminMessageType.channelCreation.rawValue
+        
         var channelDict: [String: Any] = [
             .id: channelId,
-            .lastMessage: "",
+            .lastMessage: newChannelBroadcast,
             .creationDate: timeStamp,
             .lastMessageTimeStamp: timeStamp,
             .membersUids: membersUids,
@@ -128,7 +154,10 @@ final class ChatPartnerPickerViewModel: ObservableObject {
             channelDict[.name] = channelName
         }
         
+        let messageDict: [String: Any] = [.type: newChannelBroadcast, .timeStamp: timeStamp, .ownerUid: currentUid]
+        
         FirebaseConstants.ChannelsRef.child(channelId).setValue(channelDict)
+        FirebaseConstants.MessagesRef.child(channelId).child(messageId).setValue(messageDict)
         
         membersUids.forEach { userId in
             /// keeping an index of the channel that a specific user belongs to

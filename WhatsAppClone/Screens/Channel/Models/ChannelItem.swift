@@ -22,7 +22,7 @@ struct ChannelItem: Identifiable {
     let createdBy: String
     
     var isGroupChat: Bool {
-        members.count > 2
+        membersUids.count > 2
     }
     
     var membersExcludingMe: [UserItem] {
