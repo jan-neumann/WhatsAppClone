@@ -84,8 +84,7 @@ final class ChatPartnerPickerViewModel: ObservableObject {
         } else {
             // select
             guard selectedChatPartners.count < ChannelConstants.maxGroupParticipants else {
-                errorState.errorMessage = "Sorry, we only allow a maximum of \(ChannelConstants.maxGroupParticipants) participants in a group chat."
-                errorState.showError = true
+                showError("Sorry, we only allow a maximum of \(ChannelConstants.maxGroupParticipants) participants in a group chat.")
                 return
             }
             selectedChatPartners.append(item)
@@ -98,14 +97,44 @@ final class ChatPartnerPickerViewModel: ObservableObject {
     }
     
     func createDirectChannel(_ chatPartner: UserItem, completion: @escaping (_ newChannel: ChannelItem) -> Void) {
+        
         selectedChatPartners.append(chatPartner)
-        let channelCreation = createChannel(channelName: nil)
-        switch channelCreation {
-        case .success(let channel):
-            completion(channel)
-        case .failure(let error):
-            print("Failed to create a Direct Channel: \(error.localizedDescription)")
+        
+        Task {
+            // If existing DM, get the channel
+            if let channelId = await verifyIfDirectChannelExists(with: chatPartner.uid) {
+                let snapshot = try await FirebaseConstants.ChannelsRef.child(channelId).getData()
+                let channelDict = snapshot.value as! [String: Any]
+                var directChannel = ChannelItem(channelDict)
+                directChannel.members = selectedChatPartners
+                completion(directChannel)
+                
+            } else {
+                // create a new DM with the user
+                let channelCreation = createChannel(channelName: nil)
+                switch channelCreation {
+                case .success(let channel):
+                    completion(channel)
+                case .failure(let error):
+                    showError("Sorry! Something went wrong while we were trying to setup your chat.")
+                    print("Failed to create a Direct Channel: \(error.localizedDescription)")
+                }
+            }
+
         }
+      
+    }
+    
+    typealias ChannelId = String
+    private func verifyIfDirectChannelExists(with chatPartnerId: String) async -> ChannelId? {
+        guard let currentUid = Auth.auth().currentUser?.uid,
+              let snapshot = try? await FirebaseConstants.UserDirectChannels.child(currentUid).child(chatPartnerId).getData(),
+              snapshot.exists()
+        else { return nil }
+        
+        let directMessageDict = snapshot.value as! [String: Bool]
+        let channelId = directMessageDict.compactMap { $0.key }.first
+        return channelId
     }
     
     func createGroupChannel(_ groupName: String?, completion: @escaping (_ newChannel: ChannelItem) -> Void) {
@@ -115,8 +144,14 @@ final class ChatPartnerPickerViewModel: ObservableObject {
         case .success(let channel):
             completion(channel)
         case .failure(let error):
+            showError("Sorry! Something went wrong while we were trying to setup your group chat.")
             print("Failed to create a Group Channel: \(error.localizedDescription)")
         }
+    }
+    
+    private func showError(_ errorMessage: String) {
+        errorState.errorMessage = errorMessage
+        errorState.showError = true
     }
     
     private func createChannel(channelName: String?) -> Result<ChannelItem, Error> {
@@ -124,7 +159,7 @@ final class ChatPartnerPickerViewModel: ObservableObject {
         guard !selectedChatPartners.isEmpty else {
             return .failure(ChannelCreationError.noChatPartner)
         }
-        
+           
         guard let channelId = FirebaseConstants.ChannelsRef.childByAutoId().key,
               let currentUid = Auth.auth().currentUser?.uid,
               let messageId = FirebaseConstants.MessagesRef.childByAutoId().key

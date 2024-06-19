@@ -11,6 +11,10 @@ import FirebaseDatabase
 
 struct UserService {
     
+    static func getUsers(with uids: [String], completion: @escaping(UserNode) -> Void) {
+        // TODO
+    }
+    
     static func paginateUsers(lastCursor: String?, pageSize: UInt) async throws -> UserNode {
         let mainSnapshot: DataSnapshot
         if lastCursor == nil {
