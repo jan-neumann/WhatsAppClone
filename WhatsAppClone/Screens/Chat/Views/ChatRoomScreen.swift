@@ -11,6 +11,8 @@ struct ChatRoomScreen: View {
     
     let channel: ChannelItem
     
+    @StateObject var viewModel = ChatRoomViewModel()
+    
     var body: some View {
         MessageListView()
             .toolbar(.hidden, for: .tabBar)
@@ -20,7 +22,7 @@ struct ChatRoomScreen: View {
             }
             .navigationBarTitleDisplayMode(.inline)
             .safeAreaInset(edge: .bottom) {
-                TextInputArea()
+                TextInputArea(textMessage: $viewModel.textMessage)
             }
     }
 }

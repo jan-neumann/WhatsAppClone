@@ -9,7 +9,7 @@ import SwiftUI
 
 struct TextInputArea: View {
     
-    @State private var text: String = ""
+    @Binding var textMessage: String
     
     var body: some View {
         HStack(alignment: .bottom, spacing: 5) {
@@ -26,7 +26,7 @@ struct TextInputArea: View {
     }
     
     private func messageTextField() -> some View {
-        TextField("", text: $text, axis: .vertical)
+        TextField("", text: $textMessage, axis: .vertical)
             .padding(5)
             .background(
                 RoundedRectangle(cornerRadius: 20, style: .continuous)
@@ -81,5 +81,5 @@ struct TextInputArea: View {
 }
 
 #Preview {
-    TextInputArea()
+    TextInputArea(textMessage: .constant(""))
 }
