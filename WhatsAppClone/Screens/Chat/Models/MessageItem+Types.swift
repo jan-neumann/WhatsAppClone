@@ -16,6 +16,19 @@ enum AdminMessageType: String {
 
 enum MessageType {
     case text, photo, video, audio
+    
+    var title: String {
+        switch self {
+        case .text:
+            "text"
+        case .photo:
+            "photo"
+        case .video:
+            "video"
+        case .audio:
+            "audio"
+        }
+    }
 }
 
 enum MessageDirection {

@@ -42,6 +42,7 @@
 		9D8C9F432BFDB78900FC255E /* TextInputArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C9F422BFDB78900FC255E /* TextInputArea.swift */; };
 		9D8C9F452BFDBDC700FC255E /* MessageListController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C9F442BFDBDC700FC255E /* MessageListController.swift */; };
 		9D8DE2952C1186070009FC30 /* SelectedChatPartnerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8DE2942C1186070009FC30 /* SelectedChatPartnerView.swift */; };
+		9D950F332C2A8E78000E445C /* MessageService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D950F322C2A8E78000E445C /* MessageService.swift */; };
 		9D972B702C1C0DC0006D33DA /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D972B6F2C1C0DC0006D33DA /* String+Extensions.swift */; };
 		9DA401492BFC62290098A303 /* ChannelTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA401482BFC62290098A303 /* ChannelTabScreen.swift */; };
 		9DA4014B2BFC656E0098A303 /* ChannelItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DA4014A2BFC656E0098A303 /* ChannelItemView.swift */; };
@@ -114,6 +115,7 @@
 		9D8C9F422BFDB78900FC255E /* TextInputArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputArea.swift; sourceTree = "<group>"; };
 		9D8C9F442BFDBDC700FC255E /* MessageListController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageListController.swift; sourceTree = "<group>"; };
 		9D8DE2942C1186070009FC30 /* SelectedChatPartnerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SelectedChatPartnerView.swift; sourceTree = "<group>"; };
+		9D950F322C2A8E78000E445C /* MessageService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageService.swift; sourceTree = "<group>"; };
 		9D972B6F2C1C0DC0006D33DA /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
 		9DA401482BFC62290098A303 /* ChannelTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTabScreen.swift; sourceTree = "<group>"; };
 		9DA4014A2BFC656E0098A303 /* ChannelItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelItemView.swift; sourceTree = "<group>"; };
@@ -345,6 +347,7 @@
 			isa = PBXGroup;
 			children = (
 				9D5CD7C22C199E80005E8A07 /* UserService.swift */,
+				9D950F322C2A8E78000E445C /* MessageService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -661,6 +664,7 @@
 				9D8C9F452BFDBDC700FC255E /* MessageListController.swift in Sources */,
 				9D972B702C1C0DC0006D33DA /* String+Extensions.swift in Sources */,
 				9D8C9F432BFDB78900FC255E /* TextInputArea.swift in Sources */,
+				9D950F332C2A8E78000E445C /* MessageService.swift in Sources */,
 				9DADE27C2BFF099D00554295 /* BubbleTailView.swift in Sources */,
 				9D85979C2C240C4B006292C9 /* ChatRoomViewModel.swift in Sources */,
 				9DD6CAD22C0D8A41006234F6 /* RootScreen.swift in Sources */,
