@@ -6,17 +6,22 @@
 //
 
 import SwiftUI
+import Firebase
 
 struct MessageItem: Identifiable {
     
-    let id = UUID().uuidString
+    let id: String
     let text: String
     let type: MessageType
-    let direction: MessageDirection
+    let ownerUid: String
+    
+    var direction: MessageDirection {
+        ownerUid == Auth.auth().currentUser?.uid ? .sent : .received
+    }
     
     
-    static let sentPlaceHolder = MessageItem(text: "Holy Spaghetti", type: .text, direction: .sent)
-    static let receivedPlaceHolder = MessageItem(text: "May the force be with you!", type: .text, direction: .received)
+    static let sentPlaceHolder = MessageItem(id: UUID().uuidString, text: "Holy Spaghetti", type: .text, ownerUid: "1")
+    static let receivedPlaceHolder = MessageItem(id: UUID().uuidString, text: "May the force be with you!", type: .text, ownerUid: "2")
     
     var alignment: Alignment {
         direction == .received ? .leading : .trailing
@@ -31,11 +36,21 @@ struct MessageItem: Identifiable {
     }
     
     static let stubMessages: [MessageItem] = [
-        .init(text: "Hi there", type: .text, direction: .sent),
-        .init(text: "Check out this photo", type: .photo, direction: .received),
-        .init(text: "Play this video", type: .video, direction: .sent),
-        .init(text: "Listen to this audio", type: .audio, direction: .received)
+        .init(id: UUID().uuidString, text: "Hi there", type: .text, ownerUid: "3"),
+        .init(id: UUID().uuidString, text: "Check out this photo", type: .photo, ownerUid: "4"),
+        .init(id: UUID().uuidString, text: "Play this video", type: .video, ownerUid: "5"),
+        .init(id: UUID().uuidString, text: "Listen to this audio", type: .audio, ownerUid: "6")
     ]
+}
+
+extension MessageItem {
+    init(id: String, dict: [String: Any]) {
+        self.id = id
+        self.text = dict[.text] as? String ?? ""
+        let type = dict[.type] as? String ?? "text"
+        self.type = MessageType(type)
+        self.ownerUid = dict[.ownerUid] as? String ?? ""
+    }
 }
 
 extension String {

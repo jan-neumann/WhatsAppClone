@@ -17,7 +17,7 @@ struct BubbleTextView: View {
                 .padding()
                 .background(item.backgroundColor)
                 .clipShape(.rect(cornerRadius: 16, style: .continuous))
-            .applyTail(item.direction)
+                .applyTail(item.direction)
             timeStampTextView()
         }
         .shadow(color: Color(.systemGray3).opacity(0.1), radius: 5, x: 0, y: 20)
