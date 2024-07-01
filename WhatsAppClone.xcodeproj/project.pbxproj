@@ -31,6 +31,8 @@
 		9D2724BD2BF5CB9D003BFDA1 /* WhatsAppCloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2724BC2BF5CB9D003BFDA1 /* WhatsAppCloneUITestsLaunchTests.swift */; };
 		9D2724CA2BF5CCF4003BFDA1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2724C92BF5CCF4003BFDA1 /* MainTabView.swift */; };
 		9D2724CC2BF5D457003BFDA1 /* UpdatesTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2724CB2BF5D457003BFDA1 /* UpdatesTabScreen.swift */; };
+		9D3CFC352C32783A0034ADB4 /* ChannelCreationTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3CFC342C32783A0034ADB4 /* ChannelCreationTextView.swift */; };
+		9D3CFC372C327A310034ADB4 /* AdminMessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3CFC362C327A310034ADB4 /* AdminMessageTextView.swift */; };
 		9D4FDAF62BFB9D6600B3723C /* CommunityTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4FDAF52BFB9D6600B3723C /* CommunityTabScreen.swift */; };
 		9D5CD7C32C199E80005E8A07 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5CD7C22C199E80005E8A07 /* UserService.swift */; };
 		9D5FDE912C2E84FB00472AFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D5FDE902C2E84FB00472AFC /* GoogleService-Info.plist */; };
@@ -104,6 +106,8 @@
 		9D2724BC2BF5CB9D003BFDA1 /* WhatsAppCloneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsAppCloneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9D2724C92BF5CCF4003BFDA1 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		9D2724CB2BF5D457003BFDA1 /* UpdatesTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTabScreen.swift; sourceTree = "<group>"; };
+		9D3CFC342C32783A0034ADB4 /* ChannelCreationTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationTextView.swift; sourceTree = "<group>"; };
+		9D3CFC362C327A310034ADB4 /* AdminMessageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMessageTextView.swift; sourceTree = "<group>"; };
 		9D4FDAF52BFB9D6600B3723C /* CommunityTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTabScreen.swift; sourceTree = "<group>"; };
 		9D5CD7C22C199E80005E8A07 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		9D5FDE902C2E84FB00472AFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -389,6 +393,8 @@
 				9DADE27B2BFF099D00554295 /* BubbleTailView.swift */,
 				9DEEC2F22C0450210042DBF5 /* BubbleImageView.swift */,
 				9D1361B52C059D070001A811 /* BubbleAudioView.swift */,
+				9D3CFC342C32783A0034ADB4 /* ChannelCreationTextView.swift */,
+				9D3CFC362C327A310034ADB4 /* AdminMessageTextView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -660,6 +666,7 @@
 				9D18DD102C06EDC200CB5B54 /* AuthHeaderView.swift in Sources */,
 				9DD6CADB2C0D9149006234F6 /* FirebaseConstants.swift in Sources */,
 				9DB7D7A22C0849BB0007A832 /* AuthProvider.swift in Sources */,
+				9D3CFC372C327A310034ADB4 /* AdminMessageTextView.swift in Sources */,
 				9D4FDAF62BFB9D6600B3723C /* CommunityTabScreen.swift in Sources */,
 				9D8C9F452BFDBDC700FC255E /* MessageListController.swift in Sources */,
 				9D972B702C1C0DC0006D33DA /* String+Extensions.swift in Sources */,
@@ -673,6 +680,7 @@
 				9D18DD162C06F80200CB5B54 /* SignUpScreen.swift in Sources */,
 				9D2724A02BF5CB9B003BFDA1 /* WhatsAppCloneApp.swift in Sources */,
 				9D07CAD22C1028A2007E2A12 /* ChatPartnerPickerScreen.swift in Sources */,
+				9D3CFC352C32783A0034ADB4 /* ChannelCreationTextView.swift in Sources */,
 				9DEEC2F32C0450210042DBF5 /* BubbleImageView.swift in Sources */,
 				9DADE2752BFF060F00554295 /* MessageListView.swift in Sources */,
 				9DE075902C12D3A70060975D /* NewGroupSetupScreen.swift in Sources */,
