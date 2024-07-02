@@ -19,9 +19,8 @@ struct ChatPartnerRowView<Content: View>: View {
     
     var body: some View {
         HStack {
-            Circle()
-                .frame(width: 40, height: 40)
-            
+            CircularProfileImageView(profileImageUrl: user.profileImageUrl, size: .xSmall)
+              
             VStack(alignment: .leading) {
                 Text(user.username)
                     .bold()
@@ -30,7 +29,6 @@ struct ChatPartnerRowView<Content: View>: View {
                 Text(user.bioUnwrapped)
                     .font(.caption)
                     .foregroundStyle(.gray)
-                
             }
             
             trailingItems
