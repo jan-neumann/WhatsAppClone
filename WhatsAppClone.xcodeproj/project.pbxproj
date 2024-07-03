@@ -66,6 +66,7 @@
 		9DF418952BFC6A6700B9C9E9 /* SettingsTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF418942BFC6A6700B9C9E9 /* SettingsTabScreen.swift */; };
 		9DF418972BFC6AC000B9C9E9 /* SettingsItemView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF418962BFC6AC000B9C9E9 /* SettingsItemView.swift */; };
 		9DF4189A2BFC6BE100B9C9E9 /* SettingsItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DF418992BFC6BE100B9C9E9 /* SettingsItem.swift */; };
+		9DFE66C92C3512C9009A3860 /* Date+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DFE66C82C3512C9009A3860 /* Date+Extensions.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -142,6 +143,7 @@
 		9DF418942BFC6A6700B9C9E9 /* SettingsTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsTabScreen.swift; sourceTree = "<group>"; };
 		9DF418962BFC6AC000B9C9E9 /* SettingsItemView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItemView.swift; sourceTree = "<group>"; };
 		9DF418992BFC6BE100B9C9E9 /* SettingsItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SettingsItem.swift; sourceTree = "<group>"; };
+		9DFE66C82C3512C9009A3860 /* Date+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Date+Extensions.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -416,6 +418,7 @@
 			isa = PBXGroup;
 			children = (
 				9D972B6F2C1C0DC0006D33DA /* String+Extensions.swift */,
+				9DFE66C82C3512C9009A3860 /* Date+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -709,6 +712,7 @@
 				9DADE27A2BFF08DF00554295 /* BubbleTextView.swift in Sources */,
 				9DADE2782BFF081400554295 /* MessageItem.swift in Sources */,
 				9DA4014B2BFC656E0098A303 /* ChannelItemView.swift in Sources */,
+				9DFE66C92C3512C9009A3860 /* Date+Extensions.swift in Sources */,
 				9D5CD7C32C199E80005E8A07 /* UserService.swift in Sources */,
 				9DADE27F2BFF0C2200554295 /* CustomModifiers.swift in Sources */,
 				9D1361B62C059D070001A811 /* BubbleAudioView.swift in Sources */,
