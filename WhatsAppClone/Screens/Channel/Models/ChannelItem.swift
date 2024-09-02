@@ -61,6 +61,10 @@ struct ChannelItem: Identifiable, Hashable {
         return members.first { $0.uid == createdBy}?.username ?? "Someone"
     }
     
+    var allMembersFetched: Bool {
+        return members.count == membersCount
+    }
+    
     private var groupMembersNames: String {
         let membersCount = membersCount - 1 
         let fullNames: [String] = membersExcludingMe.map { $0.username }
