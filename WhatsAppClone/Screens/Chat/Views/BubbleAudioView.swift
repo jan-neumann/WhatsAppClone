@@ -14,7 +14,20 @@ struct BubbleAudioView: View {
     @State private var sliderRange: ClosedRange<Double> = 0...20
     
     var body: some View {
-        VStack(alignment: item.horizontalAlignment, spacing: 4) {
+        HStack(alignment: .bottom, spacing: 5) {
+            
+            if item.showGroupPartnerInfo {
+                CircularProfileImageView(
+                    profileImageUrl: item.sender?.profileImageUrl,
+                    size: .mini
+                )
+            }
+            
+            
+            if item.direction == .sent {
+                timeStampTextView()
+            }
+            
             HStack {
                 playButton()
                 Slider(value: $sliderValue, in: sliderRange)
@@ -32,12 +45,14 @@ struct BubbleAudioView: View {
             .clipShape(.rect(cornerRadius: 16, style: .continuous))
             .applyTail(item.direction)
             
-            timeStampTextView()
+            if item.direction == .received {
+                timeStampTextView()
+            }
         }
         .shadow(color: Color(.systemGray3).opacity(0.1), radius: 5, x: 0, y: 20)
         .frame(maxWidth: .infinity, alignment: item.alignment)
-        .padding(.leading, item.direction == .received ? 5 : 100)
-        .padding(.trailing, item.direction == .received ? 100 : 5)
+        .padding(.leading, item.leadingPadding)
+        .padding(.trailing, item.trailingPadding)
     }
     
     private func playButton() -> some View {
@@ -53,19 +68,9 @@ struct BubbleAudioView: View {
     }
     
     private func timeStampTextView() -> some View {
-        HStack {
-            Text("3:05 PM")
-                .font(.system(size: 13))
-                .foregroundStyle(.gray)
-            
-            if item.direction == .sent {
-                Image(.seen)
-                    .resizable()
-                    .renderingMode(.template)
-                    .frame(width: 15, height: 15)
-                    .foregroundStyle(Color(.systemBlue))
-            }
-        }
+        Text("3:05 PM")
+            .font(.footnote)
+            .foregroundStyle(.gray)
     }
 }
 
