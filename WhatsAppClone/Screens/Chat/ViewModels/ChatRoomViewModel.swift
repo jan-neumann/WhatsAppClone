@@ -5,21 +5,30 @@
 //  Created by Jan Alexander Neumann on 20.06.24.
 //
 
-import Foundation
+import SwiftUI
 import Combine
+import PhotosUI
 
 final class ChatRoomViewModel: ObservableObject {
     
     @Published var textMessage = ""
     @Published var messages = [MessageItem]()
+    @Published var showPhotoPicker = false
+    @Published var photoPickerItems: [PhotosPickerItem] = []
+    @Published var selectedPhotos: [UIImage] = []
     
     private(set) var channel: ChannelItem
     private var currentUser: UserItem?
     private var subscriptions = Set<AnyCancellable>()
     
+    var showPhotoPickerPreview: Bool {
+        return !photoPickerItems.isEmpty
+    }
+    
     init(channel: ChannelItem) {
         self.channel = channel
         listenToAuthState()
+        onPhotoPickerSelection()
     }
     
     deinit {
@@ -76,6 +85,34 @@ final class ChatRoomViewModel: ObservableObject {
             self.channel.members.append(contentsOf: userNode.users)
             self.getMessages()
             print("getAllChannelMembers: \(channel.members.map({ $0.username }))")
+        }
+    }
+    
+    func handleTextInputArea(_ action: TextInputArea.UserAction) {
+        switch action {
+        case .presentPhotoPicker:
+            showPhotoPicker = true
+        case .sendMessage:
+            sendMessage()
+        }
+    }
+    
+    private func onPhotoPickerSelection() {
+        $photoPickerItems
+            .sink { [weak self] photoPickerItems in
+                guard let self = self else { return }
+                Task { await self.parsePhotoPickerItems(photoPickerItems) }
+            }
+            .store(in: &subscriptions)
+    }
+    
+    private func parsePhotoPickerItems(_ photoPickerItems: [PhotosPickerItem]) async {
+        for photoItem in photoPickerItems {
+            guard
+                let data = try? await photoItem.loadTransferable(type: Data.self),
+                let uiImage = UIImage(data: data)
+            else { return }
+            self.selectedPhotos.insert(uiImage, at: 0)
         }
     }
 }
