@@ -20,6 +20,9 @@
 		9D1361BF2C05A4DB0001A811 /* FirebaseMessaging in Frameworks */ = {isa = PBXBuildFile; productRef = 9D1361BE2C05A4DB0001A811 /* FirebaseMessaging */; };
 		9D1361C12C05A4DB0001A811 /* FirebaseStorage in Frameworks */ = {isa = PBXBuildFile; productRef = 9D1361C02C05A4DB0001A811 /* FirebaseStorage */; };
 		9D1361CC2C05A8220001A811 /* LoginScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1361CB2C05A8220001A811 /* LoginScreen.swift */; };
+		9D15F8602C89830F0081680E /* PhotosPickerItem+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D15F85F2C89830F0081680E /* PhotosPickerItem+Extensions.swift */; };
+		9D15F8622C8984B30081680E /* MediaPickerItem_Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D15F8612C8984B30081680E /* MediaPickerItem_Types.swift */; };
+		9D15F8642C898B800081680E /* URL+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D15F8632C898B800081680E /* URL+Extensions.swift */; };
 		9D18DD102C06EDC200CB5B54 /* AuthHeaderView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D18DD0F2C06EDC200CB5B54 /* AuthHeaderView.swift */; };
 		9D18DD122C06EE8000CB5B54 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D18DD112C06EE8000CB5B54 /* AuthTextField.swift */; };
 		9D18DD142C06F30B00CB5B54 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D18DD132C06F30B00CB5B54 /* AuthButton.swift */; };
@@ -95,6 +98,9 @@
 		9D0D5C662C33C85C00BA3DAE /* CircularProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProfileImageView.swift; sourceTree = "<group>"; };
 		9D1361B52C059D070001A811 /* BubbleAudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleAudioView.swift; sourceTree = "<group>"; };
 		9D1361CB2C05A8220001A811 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
+		9D15F85F2C89830F0081680E /* PhotosPickerItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosPickerItem+Extensions.swift"; sourceTree = "<group>"; };
+		9D15F8612C8984B30081680E /* MediaPickerItem_Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPickerItem_Types.swift; sourceTree = "<group>"; };
+		9D15F8632C898B800081680E /* URL+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "URL+Extensions.swift"; sourceTree = "<group>"; };
 		9D18DD0F2C06EDC200CB5B54 /* AuthHeaderView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthHeaderView.swift; sourceTree = "<group>"; };
 		9D18DD112C06EE8000CB5B54 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		9D18DD132C06F30B00CB5B54 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
@@ -422,6 +428,8 @@
 			children = (
 				9D972B6F2C1C0DC0006D33DA /* String+Extensions.swift */,
 				9DFE66C82C3512C9009A3860 /* Date+Extensions.swift */,
+				9D15F85F2C89830F0081680E /* PhotosPickerItem+Extensions.swift */,
+				9D15F8632C898B800081680E /* URL+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -445,6 +453,7 @@
 			children = (
 				9DADE2772BFF081400554295 /* MessageItem.swift */,
 				9D1BA9042C2151E4009803C7 /* MessageItem+Types.swift */,
+				9D15F8612C8984B30081680E /* MediaPickerItem_Types.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -684,12 +693,14 @@
 				9DD6CAD82C0D90C2006234F6 /* UserItem.swift in Sources */,
 				9DF418952BFC6A6700B9C9E9 /* SettingsTabScreen.swift in Sources */,
 				9D1BA9052C2151E4009803C7 /* MessageItem+Types.swift in Sources */,
+				9D15F8602C89830F0081680E /* PhotosPickerItem+Extensions.swift in Sources */,
 				9D63FD262C1AD9430056519B /* ChannelTabViewModel.swift in Sources */,
 				9D18DD102C06EDC200CB5B54 /* AuthHeaderView.swift in Sources */,
 				9DD6CADB2C0D9149006234F6 /* FirebaseConstants.swift in Sources */,
 				9DB7D7A22C0849BB0007A832 /* AuthProvider.swift in Sources */,
 				9D3CFC372C327A310034ADB4 /* AdminMessageTextView.swift in Sources */,
 				9D4FDAF62BFB9D6600B3723C /* CommunityTabScreen.swift in Sources */,
+				9D15F8642C898B800081680E /* URL+Extensions.swift in Sources */,
 				9D8C9F452BFDBDC700FC255E /* MessageListController.swift in Sources */,
 				9D972B702C1C0DC0006D33DA /* String+Extensions.swift in Sources */,
 				9D8C9F432BFDB78900FC255E /* TextInputArea.swift in Sources */,
@@ -722,6 +733,7 @@
 				9D1361B62C059D070001A811 /* BubbleAudioView.swift in Sources */,
 				9D2724CA2BF5CCF4003BFDA1 /* MainTabView.swift in Sources */,
 				9D07CAD72C103186007E2A12 /* ChatPartnerPickerViewModel.swift in Sources */,
+				9D15F8622C8984B30081680E /* MediaPickerItem_Types.swift in Sources */,
 				9DF4189A2BFC6BE100B9C9E9 /* SettingsItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
