@@ -13,6 +13,7 @@
 		9D07CAD92C1033D4007E2A12 /* GroupPartnerPickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07CAD82C1033D4007E2A12 /* GroupPartnerPickerScreen.swift */; };
 		9D0D5C642C33C82000BA3DAE /* Kingfisher in Frameworks */ = {isa = PBXBuildFile; productRef = 9D0D5C632C33C82000BA3DAE /* Kingfisher */; };
 		9D0D5C672C33C85C00BA3DAE /* CircularProfileImageView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D0D5C662C33C85C00BA3DAE /* CircularProfileImageView.swift */; };
+		9D1171BC2C8EBCBD001F3E4F /* MediaPlayerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1171BB2C8EBCBD001F3E4F /* MediaPlayerView.swift */; };
 		9D1361B62C059D070001A811 /* BubbleAudioView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1361B52C059D070001A811 /* BubbleAudioView.swift */; };
 		9D1361B92C05A4DB0001A811 /* FirebaseAuth in Frameworks */ = {isa = PBXBuildFile; productRef = 9D1361B82C05A4DB0001A811 /* FirebaseAuth */; };
 		9D1361BB2C05A4DB0001A811 /* FirebaseDatabase in Frameworks */ = {isa = PBXBuildFile; productRef = 9D1361BA2C05A4DB0001A811 /* FirebaseDatabase */; };
@@ -96,6 +97,7 @@
 		9D07CAD62C103186007E2A12 /* ChatPartnerPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPartnerPickerViewModel.swift; sourceTree = "<group>"; };
 		9D07CAD82C1033D4007E2A12 /* GroupPartnerPickerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPartnerPickerScreen.swift; sourceTree = "<group>"; };
 		9D0D5C662C33C85C00BA3DAE /* CircularProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProfileImageView.swift; sourceTree = "<group>"; };
+		9D1171BB2C8EBCBD001F3E4F /* MediaPlayerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MediaPlayerView.swift; sourceTree = "<group>"; };
 		9D1361B52C059D070001A811 /* BubbleAudioView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleAudioView.swift; sourceTree = "<group>"; };
 		9D1361CB2C05A8220001A811 /* LoginScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoginScreen.swift; sourceTree = "<group>"; };
 		9D15F85F2C89830F0081680E /* PhotosPickerItem+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "PhotosPickerItem+Extensions.swift"; sourceTree = "<group>"; };
@@ -198,6 +200,7 @@
 			isa = PBXGroup;
 			children = (
 				9D0D5C662C33C85C00BA3DAE /* CircularProfileImageView.swift */,
+				9D1171BB2C8EBCBD001F3E4F /* MediaPlayerView.swift */,
 			);
 			path = Components;
 			sourceTree = "<group>";
@@ -734,6 +737,7 @@
 				9D2724CA2BF5CCF4003BFDA1 /* MainTabView.swift in Sources */,
 				9D07CAD72C103186007E2A12 /* ChatPartnerPickerViewModel.swift in Sources */,
 				9D15F8622C8984B30081680E /* MediaPickerItem_Types.swift in Sources */,
+				9D1171BC2C8EBCBD001F3E4F /* MediaPlayerView.swift in Sources */,
 				9DF4189A2BFC6BE100B9C9E9 /* SettingsItem.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

@@ -16,6 +16,7 @@ final class ChatRoomViewModel: ObservableObject {
     @Published var showPhotoPicker = false
     @Published var photoPickerItems: [PhotosPickerItem] = []
     @Published var mediaAttachments: [MediaAttachment] = []
+    @Published var videoPlayerState: (show: Bool, player: AVPlayer?) = (false, nil)
     
     private(set) var channel: ChannelItem
     private var currentUser: UserItem?
@@ -101,6 +102,7 @@ final class ChatRoomViewModel: ObservableObject {
         $photoPickerItems
             .sink { [weak self] photoPickerItems in
                 guard let self = self else { return }
+                self.mediaAttachments.removeAll()
                 Task { await self.parsePhotoPickerItems(photoPickerItems) }
             }
             .store(in: &subscriptions)
@@ -124,6 +126,25 @@ final class ChatRoomViewModel: ObservableObject {
                 self.mediaAttachments.insert(photoAttachment, at: 0)
             }
             
+        }
+    }
+    
+    func dismissMediaPlayer() {
+        videoPlayerState.player?.replaceCurrentItem(with: nil)
+        videoPlayerState.player = nil
+        videoPlayerState.show = false
+    }
+    
+    func showMediaPlayer(_ fileURL: URL) {
+        videoPlayerState.show = true
+        videoPlayerState.player = AVPlayer(url: fileURL)
+    }
+    
+    func handleMediaAttachmentPreview(_ action: MediaAttachmentPreview.UserAction) {
+        switch action {
+        case .play(let attachment):
+            guard let fileURL = attachment.fileURL else { return }
+            showMediaPlayer(fileURL)
         }
     }
 }
