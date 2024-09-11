@@ -9,6 +9,7 @@ import SwiftUI
 import Combine
 import PhotosUI
 
+@MainActor
 final class ChatRoomViewModel: ObservableObject {
     
     @Published var textMessage = ""
@@ -21,6 +22,7 @@ final class ChatRoomViewModel: ObservableObject {
     private(set) var channel: ChannelItem
     private var currentUser: UserItem?
     private var subscriptions = Set<AnyCancellable>()
+    private let voiceRecorderService = VoiceRecorderService()
     
     var showPhotoPickerPreview: Bool {
         return !mediaAttachments.isEmpty || !photoPickerItems.isEmpty
@@ -101,7 +103,22 @@ final class ChatRoomViewModel: ObservableObject {
     }
     
     private func toggleAudioRecorder() {
-        
+        if voiceRecorderService.isRecording {
+            // stop recording
+            voiceRecorderService.stopRecording {[weak self] audioURL, audioDuration in
+                self?.createAudioAttachment(from: audioURL, audioDuration)
+            }
+        } else {
+            // start recording
+            voiceRecorderService.startRecording()
+        }
+    }
+    
+    private func createAudioAttachment(from audioURL: URL?, _ audioDuration: TimeInterval) {
+        guard let audioURL = audioURL else { return }
+        let id = UUID().uuidString
+        let audioAttachment = MediaAttachment(id: id, type: .audio)
+        mediaAttachments.insert(audioAttachment, at: 0)
     }
     
     private func onPhotoPickerSelection() {

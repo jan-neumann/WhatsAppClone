@@ -45,6 +45,7 @@
 		9D63FD242C1AD5460056519B /* ChannelItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63FD232C1AD5460056519B /* ChannelItem.swift */; };
 		9D63FD262C1AD9430056519B /* ChannelTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63FD252C1AD9430056519B /* ChannelTabViewModel.swift */; };
 		9D6F9DC22BF72480008D11E3 /* CallsTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F9DC12BF72480008D11E3 /* CallsTabScreen.swift */; };
+		9D7644D52C915E8800D4DB3F /* VoiceRecorderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7644D42C915E8800D4DB3F /* VoiceRecorderService.swift */; };
 		9D85979C2C240C4B006292C9 /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85979B2C240C4B006292C9 /* ChatRoomViewModel.swift */; };
 		9D8C9F412BFDB59000FC255E /* ChatRoomScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C9F402BFDB59000FC255E /* ChatRoomScreen.swift */; };
 		9D8C9F432BFDB78900FC255E /* TextInputArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C9F422BFDB78900FC255E /* TextInputArea.swift */; };
@@ -127,6 +128,7 @@
 		9D63FD232C1AD5460056519B /* ChannelItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelItem.swift; sourceTree = "<group>"; };
 		9D63FD252C1AD9430056519B /* ChannelTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTabViewModel.swift; sourceTree = "<group>"; };
 		9D6F9DC12BF72480008D11E3 /* CallsTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsTabScreen.swift; sourceTree = "<group>"; };
+		9D7644D42C915E8800D4DB3F /* VoiceRecorderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorderService.swift; sourceTree = "<group>"; };
 		9D85979B2C240C4B006292C9 /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
 		9D8C9F402BFDB59000FC255E /* ChatRoomScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomScreen.swift; sourceTree = "<group>"; };
 		9D8C9F422BFDB78900FC255E /* TextInputArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputArea.swift; sourceTree = "<group>"; };
@@ -378,6 +380,7 @@
 			children = (
 				9D5CD7C22C199E80005E8A07 /* UserService.swift */,
 				9D950F322C2A8E78000E445C /* MessageService.swift */,
+				9D7644D42C915E8800D4DB3F /* VoiceRecorderService.swift */,
 			);
 			path = Service;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 				9D0D5C672C33C85C00BA3DAE /* CircularProfileImageView.swift in Sources */,
 				9D8DE2952C1186070009FC30 /* SelectedChatPartnerView.swift in Sources */,
 				9D18DD142C06F30B00CB5B54 /* AuthButton.swift in Sources */,
+				9D7644D52C915E8800D4DB3F /* VoiceRecorderService.swift in Sources */,
 				9D6F9DC22BF72480008D11E3 /* CallsTabScreen.swift in Sources */,
 				9DD6CAD82C0D90C2006234F6 /* UserItem.swift in Sources */,
 				9DF418952BFC6A6700B9C9E9 /* SettingsTabScreen.swift in Sources */,
@@ -905,6 +909,7 @@
 				DEVELOPMENT_TEAM = 2GW6QU3PCC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Access to this lets you record voice messages";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
@@ -935,6 +940,7 @@
 				DEVELOPMENT_TEAM = 2GW6QU3PCC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Access to this lets you record voice messages";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
 				INFOPLIST_KEY_UILaunchScreen_Generation = YES;
