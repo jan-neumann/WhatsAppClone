@@ -28,6 +28,7 @@
 		9D18DD122C06EE8000CB5B54 /* AuthTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D18DD112C06EE8000CB5B54 /* AuthTextField.swift */; };
 		9D18DD142C06F30B00CB5B54 /* AuthButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D18DD132C06F30B00CB5B54 /* AuthButton.swift */; };
 		9D18DD162C06F80200CB5B54 /* SignUpScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D18DD152C06F80200CB5B54 /* SignUpScreen.swift */; };
+		9D19B1D92C92B7140082659D /* TimeInterval+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D19B1D82C92B70E0082659D /* TimeInterval+Extensions.swift */; };
 		9D1BA9052C2151E4009803C7 /* MessageItem+Types.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D1BA9042C2151E4009803C7 /* MessageItem+Types.swift */; };
 		9D2724A02BF5CB9B003BFDA1 /* WhatsAppCloneApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D27249F2BF5CB9B003BFDA1 /* WhatsAppCloneApp.swift */; };
 		9D2724A42BF5CB9D003BFDA1 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 9D2724A32BF5CB9D003BFDA1 /* Assets.xcassets */; };
@@ -108,6 +109,7 @@
 		9D18DD112C06EE8000CB5B54 /* AuthTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthTextField.swift; sourceTree = "<group>"; };
 		9D18DD132C06F30B00CB5B54 /* AuthButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthButton.swift; sourceTree = "<group>"; };
 		9D18DD152C06F80200CB5B54 /* SignUpScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SignUpScreen.swift; sourceTree = "<group>"; };
+		9D19B1D82C92B70E0082659D /* TimeInterval+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "TimeInterval+Extensions.swift"; sourceTree = "<group>"; };
 		9D1BA9042C2151E4009803C7 /* MessageItem+Types.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "MessageItem+Types.swift"; sourceTree = "<group>"; };
 		9D27249C2BF5CB9B003BFDA1 /* WhatsAppClone.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = WhatsAppClone.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		9D27249F2BF5CB9B003BFDA1 /* WhatsAppCloneApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsAppCloneApp.swift; sourceTree = "<group>"; };
@@ -432,6 +434,7 @@
 		9D972B6E2C1C0C54006D33DA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9D19B1D82C92B70E0082659D /* TimeInterval+Extensions.swift */,
 				9D972B6F2C1C0DC0006D33DA /* String+Extensions.swift */,
 				9DFE66C82C3512C9009A3860 /* Date+Extensions.swift */,
 				9D15F85F2C89830F0081680E /* PhotosPickerItem+Extensions.swift */,
@@ -618,7 +621,7 @@
 			attributes = {
 				BuildIndependentTargetsInParallel = 1;
 				LastSwiftUpdateCheck = 1530;
-				LastUpgradeCheck = 1530;
+				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					9D27249B2BF5CB9B003BFDA1 = {
 						CreatedOnToolsVersion = 15.3;
@@ -740,6 +743,7 @@
 				9D1361B62C059D070001A811 /* BubbleAudioView.swift in Sources */,
 				9D2724CA2BF5CCF4003BFDA1 /* MainTabView.swift in Sources */,
 				9D07CAD72C103186007E2A12 /* ChatPartnerPickerViewModel.swift in Sources */,
+				9D19B1D92C92B7140082659D /* TimeInterval+Extensions.swift in Sources */,
 				9D15F8622C8984B30081680E /* MediaPickerItem_Types.swift in Sources */,
 				9D1171BC2C8EBCBD001F3E4F /* MediaPlayerView.swift in Sources */,
 				9DF4189A2BFC6BE100B9C9E9 /* SettingsItem.swift in Sources */,
@@ -963,7 +967,6 @@
 		9D2724C42BF5CB9D003BFDA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -983,7 +986,6 @@
 		9D2724C52BF5CB9D003BFDA1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				BUNDLE_LOADER = "$(TEST_HOST)";
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
@@ -1003,7 +1005,6 @@
 		9D2724C72BF5CB9D003BFDA1 /* Debug */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2GW6QU3PCC;
@@ -1021,7 +1022,6 @@
 		9D2724C82BF5CB9D003BFDA1 /* Release */ = {
 			isa = XCBuildConfiguration;
 			buildSettings = {
-				ALWAYS_EMBED_SWIFT_STANDARD_LIBRARIES = YES;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = 2GW6QU3PCC;

@@ -14,10 +14,15 @@ import Combine
 final class VoiceRecorderService {
     
     private var audioRecorder: AVAudioRecorder?
-    private(set) var isRecording = false
-    private var elapsedTime: TimeInterval = 0
+    @Published private(set) var isRecording = false
+    @Published private(set) var elapsedTime: TimeInterval = 0
     private var startTime: Date?
     private var timer: AnyCancellable?
+    
+    deinit {
+        tearDown()
+        print("VoiceRecorderService: Deinit")
+    }
     
     func startRecording() {
         
@@ -78,6 +83,7 @@ final class VoiceRecorderService {
     }
     
     func tearDown() {
+        if isRecording { stopRecording() }
         let fileManager = FileManager.default
         let folder = fileManager.urls(for: .documentDirectory, in: .userDomainMask)[0]
         let folderContents = try! fileManager.contentsOfDirectory(at: folder, includingPropertiesForKeys: nil)
@@ -85,13 +91,13 @@ final class VoiceRecorderService {
         print("VoiceRecorderService: Deleted all recordings")
     }
     
-    private func deleteRecordings(_ urls: [URL]) {
+    func deleteRecordings(_ urls: [URL]) {
         for url in urls {
             deleteRecording(at: url)
         }
     }
     
-    private func deleteRecording(at fileURL: URL) {
+    func deleteRecording(at fileURL: URL) {
         do {
             try FileManager.default.removeItem(at: fileURL)
             print("Deleted recording at \(fileURL.path)")
