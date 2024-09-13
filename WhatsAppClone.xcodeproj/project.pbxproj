@@ -64,6 +64,7 @@
 		9DADE27F2BFF0C2200554295 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DADE27E2BFF0C2200554295 /* CustomModifiers.swift */; };
 		9DB7D79F2C0846CC0007A832 /* AuthScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB7D79E2C0846CC0007A832 /* AuthScreenModel.swift */; };
 		9DB7D7A22C0849BB0007A832 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB7D7A12C0849BB0007A832 /* AuthProvider.swift */; };
+		9DBD66EE2C93FB4C0082337C /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD66ED2C93FB4C0082337C /* FirebaseHelper.swift */; };
 		9DD6CAD22C0D8A41006234F6 /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6CAD12C0D8A41006234F6 /* RootScreen.swift */; };
 		9DD6CAD52C0D8A53006234F6 /* RootScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6CAD42C0D8A53006234F6 /* RootScreenModel.swift */; };
 		9DD6CAD82C0D90C2006234F6 /* UserItem.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6CAD72C0D90C2006234F6 /* UserItem.swift */; };
@@ -148,6 +149,7 @@
 		9DADE27E2BFF0C2200554295 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
 		9DB7D79E2C0846CC0007A832 /* AuthScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenModel.swift; sourceTree = "<group>"; };
 		9DB7D7A12C0849BB0007A832 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
+		9DBD66ED2C93FB4C0082337C /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		9DD6CAD12C0D8A41006234F6 /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
 		9DD6CAD42C0D8A53006234F6 /* RootScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreenModel.swift; sourceTree = "<group>"; };
 		9DD6CAD72C0D90C2006234F6 /* UserItem.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserItem.swift; sourceTree = "<group>"; };
@@ -471,6 +473,7 @@
 			isa = PBXGroup;
 			children = (
 				9DADE27E2BFF0C2200554295 /* CustomModifiers.swift */,
+				9DBD66ED2C93FB4C0082337C /* FirebaseHelper.swift */,
 			);
 			path = Helpers;
 			sourceTree = "<group>";
@@ -692,6 +695,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				9DBD66EE2C93FB4C0082337C /* FirebaseHelper.swift in Sources */,
 				9D2724CC2BF5D457003BFDA1 /* UpdatesTabScreen.swift in Sources */,
 				9DB7D79F2C0846CC0007A832 /* AuthScreenModel.swift in Sources */,
 				9DD6CAD52C0D8A53006234F6 /* RootScreenModel.swift in Sources */,

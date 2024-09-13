@@ -30,6 +30,10 @@ final class ChatRoomViewModel: ObservableObject {
         return !mediaAttachments.isEmpty || !photoPickerItems.isEmpty
     }
     
+    var disableSendButton: Bool {
+        return mediaAttachments.isEmpty && textMessage.isEmptyOrWhitespace
+    }
+    
     init(channel: ChannelItem) {
         self.channel = channel
         listenToAuthState()
@@ -79,9 +83,38 @@ final class ChatRoomViewModel: ObservableObject {
     
     func sendMessage() {
         guard let currentUser else { return }
-        MessageService.sendTextMessage(to: channel, from: currentUser, textMessage) { [weak self] in
-            self?.textMessage = ""
+        if mediaAttachments.isEmpty {
+            MessageService.sendTextMessage(to: channel, from: currentUser, textMessage) { [weak self] in
+                self?.textMessage = ""
+            }
+        } else {
+                
         }
+    }
+    
+    private func sendMultipleMediaMessages(_ text: String, attachments: [MediaAttachment]) {
+        mediaAttachments.forEach { attachment in
+            switch attachment.type {
+            case .photo:
+                sendPhotoMessage(text: text, attachment)
+            case .video:
+                sendVideoMessage(text: text, attachment)
+            case .audio:
+                sendAudioMessage(text: text, attachment)
+            }
+        }
+    }
+    
+    private func sendPhotoMessage(text: String, _ attachment: MediaAttachment) {
+        
+    }
+    
+    private func sendVideoMessage(text: String, _ attachment: MediaAttachment) {
+        
+    }
+    
+    private func sendAudioMessage(text: String, _ attachment: MediaAttachment) {
+        
     }
     
     private func getMessages() {
