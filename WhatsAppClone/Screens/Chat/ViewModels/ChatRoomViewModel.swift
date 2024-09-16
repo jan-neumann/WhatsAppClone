@@ -88,7 +88,7 @@ final class ChatRoomViewModel: ObservableObject {
                 self?.textMessage = ""
             }
         } else {
-                
+            sendMultipleMediaMessages(textMessage, attachments: mediaAttachments)
         }
     }
     
@@ -106,7 +106,43 @@ final class ChatRoomViewModel: ObservableObject {
     }
     
     private func sendPhotoMessage(text: String, _ attachment: MediaAttachment) {
+        /// Upload the image to storage bucket
+        uploadImageToStorage(attachment) { [weak self] imageUrl in
+            /// Store the metadata to our database
+            guard let self = self,
+                  let user = currentUser
+            else { return }
+            print("Uploaded image to storage")
+            let uploadParams = MessageUploadParams(
+                channel: channel,
+                text: text,
+                type: .photo,
+                attachment: attachment,
+                thumbnailURL: imageUrl.absoluteString,
+                sender: user
+            )
+            
+            MessageService.sendMediaMessage(to: channel, params: uploadParams) {
+                // TODO: Scroll to bottom upon image upload success
+                print("Uploaded photo to database")
+            }
+        }
+
+       
         
+    }
+    
+    private func uploadImageToStorage(_ attachment: MediaAttachment, completion: @escaping(_ imageUrl: URL) -> Void) {
+        FirebaseHelper.uploadImage(attachment.thumbnail, for: .photoMessage) { result in
+            switch result {
+            case .success(let imageURL):
+                completion(imageURL)
+            case .failure(let error):
+                print("Failed to upload Image to Storage: \(error.localizedDescription)")
+            }
+        } progressHandler: { progress in
+            print("UPLOAD IMAGE PROGRESS: \(progress)")
+        }
     }
     
     private func sendVideoMessage(text: String, _ attachment: MediaAttachment) {

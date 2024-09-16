@@ -118,6 +118,7 @@ extension String {
     static let lastMessage = "lastMessage"
     static let creationDate = "creationDate"
     static let lastMessageTimeStamp = "lastMessageTimeStamp"
+    static let lastMessageType = "lastMessageType"
     static let membersCount = "membersCount"
     static let adminUids = "adminUids"
     static let membersUids = "membersUids"
