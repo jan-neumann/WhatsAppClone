@@ -18,6 +18,8 @@ struct MessageItem: Identifiable {
     let timeStamp: Date
     var sender: UserItem?
     let thumbnailURL: String?
+    var thumbnailHeight: CGFloat?
+    var thumbnailWidth: CGFloat?
     
     var direction: MessageDirection {
         ownerUid == Auth.auth().currentUser?.uid ? .sent : .received
@@ -53,6 +55,17 @@ struct MessageItem: Identifiable {
     
     private let horizontalPadding: CGFloat = 25
     
+    var imageSize: CGSize {
+        let photoWidth = thumbnailWidth ?? 0
+        let photoHeight = thumbnailHeight ?? 0
+        let imageHeight = CGFloat(photoHeight / photoWidth * imageWidth)
+        return CGSize(width: imageWidth, height: imageHeight)
+    }
+    
+    private var imageWidth: CGFloat {
+        (UIWindowScene.current?.screenWidth ?? 0) / 1.5
+    }
+    
     static let stubMessages: [MessageItem] = [
         .init(id: UUID().uuidString, isGroupChat: false, text: "Hi there", type: .text, ownerUid: "3", timeStamp: .now, thumbnailURL: nil),
         .init(id: UUID().uuidString, isGroupChat: true, text: "Check out this photo", type: .photo, ownerUid: "4", timeStamp: .now, thumbnailURL: nil),
@@ -72,6 +85,8 @@ extension MessageItem {
         let timeInterval = dict[.timeStamp] as? TimeInterval ?? 0
         self.timeStamp = Date(timeIntervalSince1970: timeInterval)
         self.thumbnailURL = dict[.thumbnailUrl] as? String ?? nil
+        self.thumbnailWidth = dict[.thumbnailWidth] as? CGFloat ?? nil
+        self.thumbnailHeight = dict[.thumbnailHeight] as? CGFloat ?? nil
     }
 }
 

@@ -40,6 +40,7 @@
 		9D2724CC2BF5D457003BFDA1 /* UpdatesTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2724CB2BF5D457003BFDA1 /* UpdatesTabScreen.swift */; };
 		9D3CFC352C32783A0034ADB4 /* ChannelCreationTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3CFC342C32783A0034ADB4 /* ChannelCreationTextView.swift */; };
 		9D3CFC372C327A310034ADB4 /* AdminMessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3CFC362C327A310034ADB4 /* AdminMessageTextView.swift */; };
+		9D4348262C9A9A7B00459E51 /* UIWindowScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4348252C9A9A7B00459E51 /* UIWindowScene+Extensions.swift */; };
 		9D4FDAF62BFB9D6600B3723C /* CommunityTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4FDAF52BFB9D6600B3723C /* CommunityTabScreen.swift */; };
 		9D5CD7C32C199E80005E8A07 /* UserService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D5CD7C22C199E80005E8A07 /* UserService.swift */; };
 		9D5FDE912C2E84FB00472AFC /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = 9D5FDE902C2E84FB00472AFC /* GoogleService-Info.plist */; };
@@ -62,6 +63,7 @@
 		9DADE27A2BFF08DF00554295 /* BubbleTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DADE2792BFF08DF00554295 /* BubbleTextView.swift */; };
 		9DADE27C2BFF099D00554295 /* BubbleTailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DADE27B2BFF099D00554295 /* BubbleTailView.swift */; };
 		9DADE27F2BFF0C2200554295 /* CustomModifiers.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DADE27E2BFF0C2200554295 /* CustomModifiers.swift */; };
+		9DB3F7D42C9A96DA006B8546 /* UIApplications+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB3F7D32C9A96C4006B8546 /* UIApplications+Extensions.swift */; };
 		9DB7D79F2C0846CC0007A832 /* AuthScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB7D79E2C0846CC0007A832 /* AuthScreenModel.swift */; };
 		9DB7D7A22C0849BB0007A832 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB7D7A12C0849BB0007A832 /* AuthProvider.swift */; };
 		9DBD66EE2C93FB4C0082337C /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD66ED2C93FB4C0082337C /* FirebaseHelper.swift */; };
@@ -125,6 +127,7 @@
 		9D2724CB2BF5D457003BFDA1 /* UpdatesTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTabScreen.swift; sourceTree = "<group>"; };
 		9D3CFC342C32783A0034ADB4 /* ChannelCreationTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationTextView.swift; sourceTree = "<group>"; };
 		9D3CFC362C327A310034ADB4 /* AdminMessageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMessageTextView.swift; sourceTree = "<group>"; };
+		9D4348252C9A9A7B00459E51 /* UIWindowScene+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindowScene+Extensions.swift"; sourceTree = "<group>"; };
 		9D4FDAF52BFB9D6600B3723C /* CommunityTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CommunityTabScreen.swift; sourceTree = "<group>"; };
 		9D5CD7C22C199E80005E8A07 /* UserService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserService.swift; sourceTree = "<group>"; };
 		9D5FDE902C2E84FB00472AFC /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = SOURCE_ROOT; };
@@ -147,6 +150,7 @@
 		9DADE2792BFF08DF00554295 /* BubbleTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTextView.swift; sourceTree = "<group>"; };
 		9DADE27B2BFF099D00554295 /* BubbleTailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleTailView.swift; sourceTree = "<group>"; };
 		9DADE27E2BFF0C2200554295 /* CustomModifiers.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CustomModifiers.swift; sourceTree = "<group>"; };
+		9DB3F7D32C9A96C4006B8546 /* UIApplications+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplications+Extensions.swift"; sourceTree = "<group>"; };
 		9DB7D79E2C0846CC0007A832 /* AuthScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenModel.swift; sourceTree = "<group>"; };
 		9DB7D7A12C0849BB0007A832 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
 		9DBD66ED2C93FB4C0082337C /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
@@ -436,11 +440,13 @@
 		9D972B6E2C1C0C54006D33DA /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				9DB3F7D32C9A96C4006B8546 /* UIApplications+Extensions.swift */,
 				9D19B1D82C92B70E0082659D /* TimeInterval+Extensions.swift */,
 				9D972B6F2C1C0DC0006D33DA /* String+Extensions.swift */,
 				9DFE66C82C3512C9009A3860 /* Date+Extensions.swift */,
 				9D15F85F2C89830F0081680E /* PhotosPickerItem+Extensions.swift */,
 				9D15F8632C898B800081680E /* URL+Extensions.swift */,
+				9D4348252C9A9A7B00459E51 /* UIWindowScene+Extensions.swift */,
 			);
 			path = Extensions;
 			sourceTree = "<group>";
@@ -719,6 +725,8 @@
 				9D972B702C1C0DC0006D33DA /* String+Extensions.swift in Sources */,
 				9D8C9F432BFDB78900FC255E /* TextInputArea.swift in Sources */,
 				9D950F332C2A8E78000E445C /* MessageService.swift in Sources */,
+				9D4348262C9A9A7B00459E51 /* UIWindowScene+Extensions.swift in Sources */,
+				9DB3F7D42C9A96DA006B8546 /* UIApplications+Extensions.swift in Sources */,
 				9DADE27C2BFF099D00554295 /* BubbleTailView.swift in Sources */,
 				9D85979C2C240C4B006292C9 /* ChatRoomViewModel.swift in Sources */,
 				9D9DEF3B2C86E22100ADE20F /* MediaAttachmentPreview.swift in Sources */,
