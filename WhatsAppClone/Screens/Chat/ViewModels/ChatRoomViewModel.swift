@@ -156,8 +156,47 @@ final class ChatRoomViewModel: ObservableObject {
         }
     }
     
+    private func uploadFileToStorage(
+        for uploadType: FirebaseHelper.UploadType,
+        attachment: MediaAttachment,
+        completion: @escaping(_ fileUrl: URL) -> Void) {
+            
+        guard let url = attachment.fileURL else { return }
+        FirebaseHelper.uploadFile(for: uploadType, fileURL: url) { result in
+            switch result {
+            case .success(let fileUrl):
+                completion(fileUrl)
+            case .failure(let error):
+                print("Failed to upload File to Storage: \(error.localizedDescription)")
+            }
+        } progressHandler: { progress in
+            print("UPLOAD FILE PROGRESS: \(progress)")
+        }
+    }
+    
     private func sendVideoMessage(text: String, _ attachment: MediaAttachment) {
-        
+        /// Uploads the video file to the storage bucket
+        uploadFileToStorage(for: .videoMessage, attachment: attachment) { [weak self] videoURL in
+            /// Upload the video thumbnail
+            self?.uploadImageToStorage(attachment) { [weak self] thumbnailURL in
+                guard let self, let currentUser else { return }
+                let uploadParams = MessageUploadParams(
+                    channel: self.channel,
+                    text: text,
+                    type: .video,
+                    attachment: attachment,
+                    thumbnailURL: thumbnailURL.absoluteString,
+                    videoURL: videoURL.absoluteString,
+                    sender: currentUser
+                )
+                /// Saves the metadata and urls to the database
+                MessageService.sendMediaMessage(
+                    to: self.channel,
+                    params: uploadParams) { [weak self] in
+                        self?.scrollToBottom(isAnimated: true)
+                    }
+            }
+        }
     }
     
     private func sendAudioMessage(text: String, _ attachment: MediaAttachment) {
