@@ -109,7 +109,7 @@ final class ChatRoomViewModel: ObservableObject {
             case .video:
                 sendVideoMessage(text: text, attachment)
             case .audio:
-                sendAudioMessage(text: text, attachment)
+                sendVoiceMessage(text: text, attachment)
             }
         }
     }
@@ -199,8 +199,29 @@ final class ChatRoomViewModel: ObservableObject {
         }
     }
     
-    private func sendAudioMessage(text: String, _ attachment: MediaAttachment) {
+    private func sendVoiceMessage(text: String, _ attachment: MediaAttachment) {
+        /// Uploads the audio file to the storage bucket
+        guard let audioDuration = attachment.audioDuration else { return }
         
+        uploadFileToStorage(for: .voiceMessage, attachment: attachment) { [weak self] audioURL in
+            guard let self, let currentUser else { return }
+            let uploadParams = MessageUploadParams(
+                channel: self.channel,
+                text: text,
+                type: .audio,
+                attachment: attachment,
+                sender: currentUser,
+                audioURL: audioURL.absoluteString,
+                audioDuration: audioDuration
+            )
+            /// Saves the metadata and urls to the database
+            MessageService.sendMediaMessage(
+                to: self.channel,
+                params: uploadParams) { [weak self] in
+                    self?.scrollToBottom(isAnimated: true)
+                }
+            
+        }
     }
     
     private func getMessages() {
