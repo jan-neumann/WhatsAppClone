@@ -66,6 +66,7 @@
 		9DB3F7D42C9A96DA006B8546 /* UIApplications+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB3F7D32C9A96C4006B8546 /* UIApplications+Extensions.swift */; };
 		9DB7D79F2C0846CC0007A832 /* AuthScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB7D79E2C0846CC0007A832 /* AuthScreenModel.swift */; };
 		9DB7D7A22C0849BB0007A832 /* AuthProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB7D7A12C0849BB0007A832 /* AuthProvider.swift */; };
+		9DB9685F2C9D49F100506ABD /* VoiceMessagePlayer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DB9685E2C9D49F100506ABD /* VoiceMessagePlayer.swift */; };
 		9DBD66EE2C93FB4C0082337C /* FirebaseHelper.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DBD66ED2C93FB4C0082337C /* FirebaseHelper.swift */; };
 		9DD6CAD22C0D8A41006234F6 /* RootScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6CAD12C0D8A41006234F6 /* RootScreen.swift */; };
 		9DD6CAD52C0D8A53006234F6 /* RootScreenModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9DD6CAD42C0D8A53006234F6 /* RootScreenModel.swift */; };
@@ -153,6 +154,7 @@
 		9DB3F7D32C9A96C4006B8546 /* UIApplications+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIApplications+Extensions.swift"; sourceTree = "<group>"; };
 		9DB7D79E2C0846CC0007A832 /* AuthScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthScreenModel.swift; sourceTree = "<group>"; };
 		9DB7D7A12C0849BB0007A832 /* AuthProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AuthProvider.swift; sourceTree = "<group>"; };
+		9DB9685E2C9D49F100506ABD /* VoiceMessagePlayer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceMessagePlayer.swift; sourceTree = "<group>"; };
 		9DBD66ED2C93FB4C0082337C /* FirebaseHelper.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirebaseHelper.swift; sourceTree = "<group>"; };
 		9DD6CAD12C0D8A41006234F6 /* RootScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreen.swift; sourceTree = "<group>"; };
 		9DD6CAD42C0D8A53006234F6 /* RootScreenModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RootScreenModel.swift; sourceTree = "<group>"; };
@@ -405,6 +407,7 @@
 			isa = PBXGroup;
 			children = (
 				9D85979B2C240C4B006292C9 /* ChatRoomViewModel.swift */,
+				9DB9685E2C9D49F100506ABD /* VoiceMessagePlayer.swift */,
 			);
 			path = ViewModels;
 			sourceTree = "<group>";
@@ -737,6 +740,7 @@
 				9D2724A02BF5CB9B003BFDA1 /* WhatsAppCloneApp.swift in Sources */,
 				9D07CAD22C1028A2007E2A12 /* ChatPartnerPickerScreen.swift in Sources */,
 				9D3CFC352C32783A0034ADB4 /* ChannelCreationTextView.swift in Sources */,
+				9DB9685F2C9D49F100506ABD /* VoiceMessagePlayer.swift in Sources */,
 				9DEEC2F32C0450210042DBF5 /* BubbleImageView.swift in Sources */,
 				9DADE2752BFF060F00554295 /* MessageListView.swift in Sources */,
 				9DE075902C12D3A70060975D /* NewGroupSetupScreen.swift in Sources */,

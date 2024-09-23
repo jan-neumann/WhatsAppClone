@@ -8,6 +8,9 @@
 import SwiftUI
 
 struct BubbleAudioView: View {
+    @EnvironmentObject private var voiceMessagePlayer: VoiceMessagePlayer
+    @State private var playbackState: VoiceMessagePlayer.PlaybackState = .stopped
+    
     let item: MessageItem
     
     @State private var sliderValue: Double = 0
@@ -53,11 +56,14 @@ struct BubbleAudioView: View {
         .frame(maxWidth: .infinity, alignment: item.alignment)
         .padding(.leading, item.leadingPadding)
         .padding(.trailing, item.trailingPadding)
+        .onReceive(voiceMessagePlayer.$playbackState) { state in
+            observePlaybackState(state)
+        }
     }
     
     private func playButton() -> some View {
         Button {
-            
+            handlePlayVoiceMessage()
         } label: {
             Image(systemName: "play.fill")
                 .padding(10)
@@ -71,6 +77,30 @@ struct BubbleAudioView: View {
         Text("3:05 PM")
             .font(.footnote)
             .foregroundStyle(.gray)
+    }
+}
+
+// MARK: - VoiceMessagePlayer Playback States
+
+extension BubbleAudioView {
+    
+    private func handlePlayVoiceMessage() {
+        if playbackState == .stopped || playbackState == .paused {
+            guard let audioMessageURL = item.audioURL,
+                  let voiceMessageUrl = URL(string: audioMessageURL) else { return }
+            voiceMessagePlayer.playAudio(from: voiceMessageUrl)
+        } else {
+            voiceMessagePlayer.pauseAudio()
+        }
+    }
+    
+    private func observePlaybackState(_ state: VoiceMessagePlayer.PlaybackState) {
+        if state == .stopped {
+            playbackState = .stopped
+            sliderValue = 0
+        } else {
+            playbackState = state
+        }
     }
 }
 
