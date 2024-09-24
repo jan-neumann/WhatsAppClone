@@ -5,6 +5,7 @@
 //  Created by Jan Alexander Neumann on 28.05.24.
 //
 
+import AVKit
 import SwiftUI
 
 struct BubbleAudioView: View {
@@ -15,6 +16,8 @@ struct BubbleAudioView: View {
     
     @State private var sliderValue: Double = 0
     @State private var sliderRange: ClosedRange<Double> = 0...20
+    @State private var playbackTime = "00:00"
+    @State private var isDraggingSlider = false
     
     var body: some View {
         HStack(alignment: .bottom, spacing: 5) {
@@ -33,12 +36,22 @@ struct BubbleAudioView: View {
             
             HStack {
                 playButton()
-                Slider(value: $sliderValue, in: sliderRange)
-                    .tint(.gray)
+                Slider(value: $sliderValue, in: sliderRange) { editing in
+                    isDraggingSlider = editing
+                    if !editing {
+                        voiceMessagePlayer.seek(to: sliderValue)
+                    }
+                }
+                .tint(.gray)
                 
-                Text("04:00")
-                    .foregroundStyle(.gray)
-                
+                if playbackState == .stopped {
+                    Text(item.audioDurationText)
+                        .foregroundStyle(.gray)
+                } else {
+                    Text(playbackTime)
+                        .foregroundStyle(.gray)
+                }
+
             }
             .padding(10)
             .background(Color.gray.opacity(0.1))
@@ -59,13 +72,24 @@ struct BubbleAudioView: View {
         .onReceive(voiceMessagePlayer.$playbackState) { state in
             observePlaybackState(state)
         }
+        .onReceive(voiceMessagePlayer.$currentTime) { currentTime in
+            guard let url = voiceMessagePlayer.currentURL?.absoluteString,
+                  url == item.audioURL else { return }
+            listen(to: currentTime)
+        }
+        .onReceive(voiceMessagePlayer.$playerItem) { playerItem in
+            guard let url = voiceMessagePlayer.currentURL?.absoluteString,
+                  url == item.audioURL else { return }
+            guard let audioDuration = item.audioDuration else { return }
+            sliderRange = 0...audioDuration
+        }
     }
     
     private func playButton() -> some View {
         Button {
             handlePlayVoiceMessage()
         } label: {
-            Image(systemName: "play.fill")
+            Image(systemName: playbackState.icon)
                 .padding(10)
                 .background(item.direction == .received ? .green : .white)
                 .clipShape(.circle)
@@ -99,8 +123,16 @@ extension BubbleAudioView {
             playbackState = .stopped
             sliderValue = 0
         } else {
+            guard let url = voiceMessagePlayer.currentURL?.absoluteString,
+                  url == item.audioURL else { return }
             playbackState = state
         }
+    }
+    
+    private func listen(to currentTime: CMTime) {
+        guard !isDraggingSlider else { return }
+        playbackTime = currentTime.seconds.formatElapsedTime
+        sliderValue = currentTime.seconds
     }
 }
 
