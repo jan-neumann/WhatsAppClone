@@ -49,6 +49,7 @@
 		9D63FD262C1AD9430056519B /* ChannelTabViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D63FD252C1AD9430056519B /* ChannelTabViewModel.swift */; };
 		9D6F9DC22BF72480008D11E3 /* CallsTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D6F9DC12BF72480008D11E3 /* CallsTabScreen.swift */; };
 		9D7644D52C915E8800D4DB3F /* VoiceRecorderService.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7644D42C915E8800D4DB3F /* VoiceRecorderService.swift */; };
+		9D7BA7062CA528F600169031 /* BubbleView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D7BA7052CA528EE00169031 /* BubbleView.swift */; };
 		9D85979C2C240C4B006292C9 /* ChatRoomViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D85979B2C240C4B006292C9 /* ChatRoomViewModel.swift */; };
 		9D8C9F412BFDB59000FC255E /* ChatRoomScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C9F402BFDB59000FC255E /* ChatRoomScreen.swift */; };
 		9D8C9F432BFDB78900FC255E /* TextInputArea.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D8C9F422BFDB78900FC255E /* TextInputArea.swift */; };
@@ -138,6 +139,7 @@
 		9D63FD252C1AD9430056519B /* ChannelTabViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelTabViewModel.swift; sourceTree = "<group>"; };
 		9D6F9DC12BF72480008D11E3 /* CallsTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CallsTabScreen.swift; sourceTree = "<group>"; };
 		9D7644D42C915E8800D4DB3F /* VoiceRecorderService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VoiceRecorderService.swift; sourceTree = "<group>"; };
+		9D7BA7052CA528EE00169031 /* BubbleView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = BubbleView.swift; sourceTree = "<group>"; };
 		9D85979B2C240C4B006292C9 /* ChatRoomViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomViewModel.swift; sourceTree = "<group>"; };
 		9D8C9F402BFDB59000FC255E /* ChatRoomScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatRoomScreen.swift; sourceTree = "<group>"; };
 		9D8C9F422BFDB78900FC255E /* TextInputArea.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TextInputArea.swift; sourceTree = "<group>"; };
@@ -427,6 +429,7 @@
 		9D8C9F3F2BFDB56C00FC255E /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				9D7BA7052CA528EE00169031 /* BubbleView.swift */,
 				9D8C9F402BFDB59000FC255E /* ChatRoomScreen.swift */,
 				9D8C9F422BFDB78900FC255E /* TextInputArea.swift */,
 				9D8C9F442BFDBDC700FC255E /* MessageListController.swift */,
@@ -732,6 +735,7 @@
 				9D972B702C1C0DC0006D33DA /* String+Extensions.swift in Sources */,
 				9D8C9F432BFDB78900FC255E /* TextInputArea.swift in Sources */,
 				9D950F332C2A8E78000E445C /* MessageService.swift in Sources */,
+				9D7BA7062CA528F600169031 /* BubbleView.swift in Sources */,
 				9D4348262C9A9A7B00459E51 /* UIWindowScene+Extensions.swift in Sources */,
 				9DB3F7D42C9A96DA006B8546 /* UIApplications+Extensions.swift in Sources */,
 				9DADE27C2BFF099D00554295 /* BubbleTailView.swift in Sources */,
