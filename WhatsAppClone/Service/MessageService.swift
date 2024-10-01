@@ -17,7 +17,8 @@ struct MessageService {
                 
         let channelDict: [String: Any] = [
             .lastMessage: textMessage,
-            .lastMessageTimeStamp: timeStamp
+            .lastMessageTimeStamp: timeStamp,
+            .lastMessageType: MessageType.text.title
         ]
         let messageDict: [String: Any] = [
             .text: textMessage,
@@ -72,7 +73,9 @@ struct MessageService {
                 var messages: [MessageItem] = []
                 dict.forEach { key, value in
                     let messageDict = value as? [String: Any] ?? [:]
-                    let message = MessageItem(id: key, isGroupChat: channel.isGroupChat, dict: messageDict)
+                    var message = MessageItem(id: key, isGroupChat: channel.isGroupChat, dict: messageDict)
+                    let messageSender = channel.members.first(where: { $0.uid == message.ownerUid })
+                    message.sender = messageSender
                     messages.append(message)
                     completion(messages)
                     if messages.count == snapshot.childrenCount {
