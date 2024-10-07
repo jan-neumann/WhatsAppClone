@@ -126,7 +126,9 @@ final class MessageListController: UIViewController {
     }
     
     @objc private func refreshData() {
+
         messagesCollectionView.refreshControl?.endRefreshing()
+        viewModel.getMessages()
     }
 }
 

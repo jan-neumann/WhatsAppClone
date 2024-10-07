@@ -21,6 +21,7 @@ final class ChatRoomViewModel: ObservableObject {
     @Published var isRecordingVoiceMessage: Bool = false
     @Published var elapsedVoiceMessageTime: TimeInterval = 0
     @Published var scrollToBottomRequest: (scroll: Bool, isAnimated: Bool) = (false, false)
+    private var currentPage: String?
     
     private(set) var channel: ChannelItem
     private var currentUser: UserItem?
@@ -224,13 +225,23 @@ final class ChatRoomViewModel: ObservableObject {
         }
     }
     
-    private func getMessages() {
-        MessageService.getMessages(for: channel) { [weak self] messages in
-            self?.messages = messages
+   func getMessages() {
+//        MessageService.getMessages(for: channel) { [weak self] messages in
+//            self?.messages = messages
+//            self?.scrollToBottom(isAnimated: false)
+//            print("messages: \(messages.map{ $0.text })")
+//        }
+        MessageService.getHistoricalMessages(for: channel, lastCursor: currentPage, pageSize: 5) { [weak self] messageNode in
+            self?.messages.append(contentsOf: messageNode.messages)
+            self?.currentPage = messageNode.currentCursor
             self?.scrollToBottom(isAnimated: false)
-            print("messages: \(messages.map{ $0.text })")
+            print("messages: \(messageNode.messages.map{ $0.text })")
         }
     }
+    
+//    func getMoreMessages() {
+//        
+//    }
     
     private func getAllChannelMembers() {
         /// I already have the current user, and potentially 2 other members so no need to refetch those
