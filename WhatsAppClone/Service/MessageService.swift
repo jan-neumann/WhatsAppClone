@@ -124,8 +124,8 @@ struct MessageService {
                 messages.sort { $0.timeStamp > $1.timeStamp }
                 
                 if messages.count == mainSnapshot.childrenCount {
-                    let filterMessages = lastCursor == nil ? messages : messages.filter { $0.id != lastCursor }
-                    let messageNode = MessageNode(messages: messages, currentCursor: first.key)
+                    let filteredMessages = lastCursor == nil ? messages : messages.sorted(by: { $0.timeStamp < $1.timeStamp }).filter { $0.id != lastCursor }
+                    let messageNode = MessageNode(messages: filteredMessages, currentCursor: first.key)
                     completion(messageNode)
                 }
                 

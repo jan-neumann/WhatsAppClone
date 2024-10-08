@@ -40,6 +40,7 @@ final class MessageListController: UIViewController {
     private var viewModel: ChatRoomViewModel
     private var subscriptions = Set<AnyCancellable>()
     private let cellIdentifier = "MessageListControllerCell"
+    private var lastScrollPosition: String?
     
     private lazy var pullToRefreshControl: UIRefreshControl = {
         let pullToRefreshControl = UIRefreshControl()
@@ -86,11 +87,29 @@ final class MessageListController: UIViewController {
         return backgroundImageView
     }()
     
+    private let pullDownToRefreshView: UIButton = {
+        var buttonConfig = UIButton.Configuration.filled()
+        var imageConfig = UIImage.SymbolConfiguration(pointSize: 10, weight: .black)
+        let image = UIImage(systemName: "arrow.up.circle.fill", withConfiguration: imageConfig)
+        buttonConfig.image = image
+        buttonConfig.baseBackgroundColor = .bubbleGreen
+        buttonConfig.baseBackgroundColor = .whatsAppBlack
+        buttonConfig.imagePadding = 5
+        buttonConfig.cornerStyle = .capsule
+        let font = UIFont.systemFont(ofSize: 12, weight: .black)
+        buttonConfig.attributedTitle = AttributedString("Pull Down", attributes: AttributeContainer([NSAttributedString.Key.font: font]))
+        let button = UIButton(configuration: buttonConfig)
+        button.translatesAutoresizingMaskIntoConstraints = false
+       // button.addTarget(self, action: #selector(pullDownToRefresh), for: .touchUpInside)
+        return button
+    }()
+    
     // MARK: - Methods
     
     private func setUpViews() {
         view.addSubview(backgroundImageView)
         view.addSubview(messagesCollectionView)
+        view.addSubview(pullDownToRefreshView)
         
         NSLayoutConstraint.activate([
             backgroundImageView.topAnchor.constraint(equalTo: view.topAnchor),
@@ -101,7 +120,10 @@ final class MessageListController: UIViewController {
             messagesCollectionView.topAnchor.constraint(equalTo: view.topAnchor),
             messagesCollectionView.leadingAnchor.constraint(equalTo: view.leadingAnchor),
             messagesCollectionView.bottomAnchor.constraint(equalTo: view.bottomAnchor),
-            messagesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor)
+            messagesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
+            
+            pullDownToRefreshView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
+            
         ])
     }
     
@@ -123,11 +145,24 @@ final class MessageListController: UIViewController {
                 }
             }
             .store(in: &subscriptions)
+        
+        viewModel.$isPaginating
+            .debounce(for: .milliseconds(delay), scheduler: DispatchQueue.main)
+            .sink { [weak self] isPaginating in
+                guard let self, let lastScrollPosition else { return }
+                
+                if !isPaginating {
+                    guard let index = viewModel.messages.firstIndex(where: { $0.id == lastScrollPosition }) else { return }
+                    let indexPath = IndexPath(item: index, section: 0)
+                    self.messagesCollectionView.scrollToItem(at: indexPath, at: .top, animated: false)
+                    self.pullToRefreshControl.endRefreshing()
+                }
+            }
+            .store(in: &subscriptions)
     }
     
     @objc private func refreshData() {
-
-        messagesCollectionView.refreshControl?.endRefreshing()
+        lastScrollPosition = viewModel.messages.first?.id
         viewModel.getMessages()
     }
 }
