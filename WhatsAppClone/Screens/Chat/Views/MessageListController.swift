@@ -93,14 +93,14 @@ final class MessageListController: UIViewController {
         let image = UIImage(systemName: "arrow.up.circle.fill", withConfiguration: imageConfig)
         buttonConfig.image = image
         buttonConfig.baseBackgroundColor = .bubbleGreen
-        buttonConfig.baseBackgroundColor = .whatsAppBlack
+        buttonConfig.baseForegroundColor = .whatsAppBlack
         buttonConfig.imagePadding = 5
         buttonConfig.cornerStyle = .capsule
         let font = UIFont.systemFont(ofSize: 12, weight: .black)
         buttonConfig.attributedTitle = AttributedString("Pull Down", attributes: AttributeContainer([NSAttributedString.Key.font: font]))
         let button = UIButton(configuration: buttonConfig)
         button.translatesAutoresizingMaskIntoConstraints = false
-       // button.addTarget(self, action: #selector(pullDownToRefresh), for: .touchUpInside)
+        button.alpha = 0
         return button
     }()
     
@@ -123,7 +123,8 @@ final class MessageListController: UIViewController {
             messagesCollectionView.trailingAnchor.constraint(equalTo: view.trailingAnchor),
             
             pullDownToRefreshView.topAnchor.constraint(equalTo: view.safeAreaLayoutGuide.topAnchor, constant: 10),
-            
+            pullDownToRefreshView.centerXAnchor.constraint(equalTo: view.centerXAnchor)
+       
         ])
     }
     
@@ -163,7 +164,7 @@ final class MessageListController: UIViewController {
     
     @objc private func refreshData() {
         lastScrollPosition = viewModel.messages.first?.id
-        viewModel.getMessages()
+        viewModel.paginateMoreMessages()
     }
 }
 
@@ -197,6 +198,14 @@ extension MessageListController: UICollectionViewDelegate, UICollectionViewDataS
             viewModel.showMediaPlayer(videoURL)
         default:
             break
+        }
+    }
+    
+    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+        if scrollView.contentOffset.y <= 0 {
+            pullDownToRefreshView.alpha = viewModel.isPaginatable ? 1 : 0
+        } else {
+            pullDownToRefreshView.alpha = 0
         }
     }
 }

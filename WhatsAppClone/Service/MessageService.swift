@@ -121,10 +121,10 @@ struct MessageService {
                     return message
                 }
                 
-                messages.sort { $0.timeStamp > $1.timeStamp }
+                messages.sort { $0.timeStamp < $1.timeStamp }
                 
                 if messages.count == mainSnapshot.childrenCount {
-                    let filteredMessages = lastCursor == nil ? messages : messages.sorted(by: { $0.timeStamp < $1.timeStamp }).filter { $0.id != lastCursor }
+                    let filteredMessages = lastCursor == nil ? messages : messages.filter { $0.id != lastCursor }
                     let messageNode = MessageNode(messages: filteredMessages, currentCursor: first.key)
                     completion(messageNode)
                 }
@@ -133,7 +133,34 @@ struct MessageService {
                 completion(.emptyNode)
                 print("Failed to get messages for channel: \(String(describing: channel.name))")
             }
-            
+    }
+    
+    static func getFirstMessage(in channel: ChannelItem, completion: @escaping (MessageItem) -> Void) {
+        FirebaseConstants.MessagesRef.child(channel.id)
+            .queryLimited(toFirst: 1)
+            .observeSingleEvent(of: .value) { snapshot in
+                guard let dictionary = snapshot.value as? [String: Any] else { return }
+                dictionary.forEach { key, value in
+                    guard let messageDict = snapshot.value as? [String: Any] else { return }
+                    var firstMessage = MessageItem(id: key, isGroupChat: channel.isGroupChat, dict: messageDict)
+                    let messageSender = channel.members.first(where: { $0.id == firstMessage.ownerUid } )
+                    firstMessage.sender = messageSender
+                    completion(firstMessage)
+                }
+            } withCancel: { error in
+                print("Failed to get first message for channel: \(String(describing: channel.name)), error: \(error.localizedDescription)")
+            }
+    }
+    
+    static func listenForNewMessages(in channel: ChannelItem, completion: @escaping (MessageItem) -> Void) {
+        FirebaseConstants.MessagesRef.child(channel.id)
+            .observe(.childAdded) { snapshot in
+                guard let messageDict = snapshot.value as? [String: Any] else { return }
+                var newMessage = MessageItem(id: snapshot.key, isGroupChat: channel.isGroupChat, dict: messageDict)
+                let messageSender = channel.members.first(where: { $0.id == newMessage.ownerUid } )
+                newMessage.sender = messageSender
+                completion(newMessage)
+            }
     }
     
 }
