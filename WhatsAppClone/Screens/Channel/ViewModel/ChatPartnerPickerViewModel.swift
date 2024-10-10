@@ -46,7 +46,7 @@ final class ChatPartnerPickerViewModel: ObservableObject {
         !users.isEmpty
     }
     
-    private var isDirectChannel: Bool {
+    var isDirectChannel: Bool {
         selectedChatPartners.count == 1
     }
     
@@ -117,14 +117,17 @@ final class ChatPartnerPickerViewModel: ObservableObject {
     
     func createDirectChannel(_ chatPartner: UserItem, completion: @escaping (_ newChannel: ChannelItem) -> Void) {
         
-        selectedChatPartners.append(chatPartner)
-        
+        if selectedChatPartners.isEmpty {
+            selectedChatPartners.append(chatPartner)
+        }
+         
         Task {
             // If existing DM, get the channel
             if let channelId = await verifyIfDirectChannelExists(with: chatPartner.uid) {
                 let snapshot = try await FirebaseConstants.ChannelsRef.child(channelId).getData()
                 let channelDict = snapshot.value as! [String: Any]
                 var directChannel = ChannelItem(channelDict)
+                // MARK: Add current User to channel member
                 directChannel.members = selectedChatPartners
                 if let currentUser {
                     directChannel.members.append(currentUser)

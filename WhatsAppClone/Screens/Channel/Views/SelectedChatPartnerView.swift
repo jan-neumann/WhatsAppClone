@@ -25,9 +25,7 @@ struct SelectedChatPartnerView: View {
     
     private func chatPartnerView(_ user: UserItem) -> some View {
         VStack {
-            Circle()
-                .fill(.gray)
-                .frame(width: 60, height: 60)
+            CircularProfileImageView(profileImageUrl: user.profileImageUrl, size: .medium)
                 .overlay(alignment: .topTrailing) {
                     cancelButton(user)
                 }
