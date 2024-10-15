@@ -52,6 +52,10 @@ struct SettingsTabScreen: View {
                 trailingNavItem()
             }
         }
+        .alert(isPresent: $viewModel.showProgressHUD,
+               view: viewModel.progressHUDView)
+        .alert(isPresent: $viewModel.showSuccessHUD,
+                     view: viewModel.successHUDView)
         
     }
 }
@@ -73,11 +77,13 @@ extension SettingsTabScreen {
     private func trailingNavItem() -> some ToolbarContent {
         ToolbarItem(placement: .topBarTrailing) {
             Button("Save") {
-               
+                viewModel.uploadProfilePhoto()
             }
-          
+            .bold()
+            .disabled(viewModel.disableSaveButton)
         }
     }
+    
 }
 
 private struct SettingsHeaderView: View {
@@ -113,7 +119,9 @@ private struct SettingsHeaderView: View {
                 .frame(width: 55, height: 55)
                 .clipShape(.circle)
         } else {
-            CircularProfileImageView(size: .custom(55))
+            CircularProfileImageView(profileImageUrl: currentUser.profileImageUrl,
+                                     size: .custom(55)
+            )
         }
     }
     

@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		9D050F922CBE2EA70085944C /* AlertKit in Frameworks */ = {isa = PBXBuildFile; productRef = 9D050F912CBE2EA70085944C /* AlertKit */; };
 		9D07CAD22C1028A2007E2A12 /* ChatPartnerPickerScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07CAD12C1028A2007E2A12 /* ChatPartnerPickerScreen.swift */; };
 		9D07CAD42C102B52007E2A12 /* ChatPartnerRowView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07CAD32C102B52007E2A12 /* ChatPartnerRowView.swift */; };
 		9D07CAD72C103186007E2A12 /* ChatPartnerPickerViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D07CAD62C103186007E2A12 /* ChatPartnerPickerViewModel.swift */; };
@@ -181,6 +182,7 @@
 			files = (
 				9D0D5C642C33C82000BA3DAE /* Kingfisher in Frameworks */,
 				9D1361BF2C05A4DB0001A811 /* FirebaseMessaging in Frameworks */,
+				9D050F922CBE2EA70085944C /* AlertKit in Frameworks */,
 				9D1361BD2C05A4DB0001A811 /* FirebaseDatabaseSwift in Frameworks */,
 				9D1361BB2C05A4DB0001A811 /* FirebaseDatabase in Frameworks */,
 				9D1361C12C05A4DB0001A811 /* FirebaseStorage in Frameworks */,
@@ -601,6 +603,7 @@
 				9D1361BE2C05A4DB0001A811 /* FirebaseMessaging */,
 				9D1361C02C05A4DB0001A811 /* FirebaseStorage */,
 				9D0D5C632C33C82000BA3DAE /* Kingfisher */,
+				9D050F912CBE2EA70085944C /* AlertKit */,
 			);
 			productName = WhatsAppClone;
 			productReference = 9D27249C2BF5CB9B003BFDA1 /* WhatsAppClone.app */;
@@ -677,6 +680,7 @@
 			packageReferences = (
 				9D1361B72C05A4DB0001A811 /* XCRemoteSwiftPackageReference "firebase-ios-sdk" */,
 				9D0D5C622C33C82000BA3DAE /* XCRemoteSwiftPackageReference "Kingfisher" */,
+				9D050F902CBE2EA70085944C /* XCRemoteSwiftPackageReference "AlertKit" */,
 			);
 			productRefGroup = 9D27249D2BF5CB9B003BFDA1 /* Products */;
 			projectDirPath = "";
@@ -1114,6 +1118,14 @@
 /* End XCConfigurationList section */
 
 /* Begin XCRemoteSwiftPackageReference section */
+		9D050F902CBE2EA70085944C /* XCRemoteSwiftPackageReference "AlertKit" */ = {
+			isa = XCRemoteSwiftPackageReference;
+			repositoryURL = "https://github.com/sparrowcode/AlertKit";
+			requirement = {
+				kind = upToNextMajorVersion;
+				minimumVersion = 5.1.9;
+			};
+		};
 		9D0D5C622C33C82000BA3DAE /* XCRemoteSwiftPackageReference "Kingfisher" */ = {
 			isa = XCRemoteSwiftPackageReference;
 			repositoryURL = "https://github.com/onevcat/Kingfisher";
@@ -1133,6 +1145,11 @@
 /* End XCRemoteSwiftPackageReference section */
 
 /* Begin XCSwiftPackageProductDependency section */
+		9D050F912CBE2EA70085944C /* AlertKit */ = {
+			isa = XCSwiftPackageProductDependency;
+			package = 9D050F902CBE2EA70085944C /* XCRemoteSwiftPackageReference "AlertKit" */;
+			productName = AlertKit;
+		};
 		9D0D5C632C33C82000BA3DAE /* Kingfisher */ = {
 			isa = XCSwiftPackageProductDependency;
 			package = 9D0D5C622C33C82000BA3DAE /* XCRemoteSwiftPackageReference "Kingfisher" */;
