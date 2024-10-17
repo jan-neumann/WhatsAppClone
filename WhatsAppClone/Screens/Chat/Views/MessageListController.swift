@@ -87,6 +87,13 @@ final class MessageListController: UIViewController {
         return backgroundImageView
     }()
     
+    // MARK: - Custom Reactions Properties
+    
+    private var startingFrame: CGRect?
+    private var blurView: UIVisualEffectView?
+    private var focusedView: UIView?
+    private var highlightedCell: UICollectionViewCell?
+    
     private let pullDownToRefreshView: UIButton = {
         var buttonConfig = UIButton.Configuration.filled()
         var imageConfig = UIImage.SymbolConfiguration(pointSize: 10, weight: .black)
@@ -189,16 +196,84 @@ extension MessageListController: UICollectionViewDelegate, UICollectionViewDataS
     }
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        UIApplication.dismissKeyboard()
-        let message = viewModel.messages[indexPath.item]
-        switch message.type {
-        case .video:
-            guard let videoURLString = message.videoURL,
-                  let videoURL = URL(string: videoURLString) else { return }
-            viewModel.showMediaPlayer(videoURL)
-        default:
-            break
-        }
+        
+        guard let selectedCell = collectionView.cellForItem(at: indexPath) else { return }
+
+        startingFrame = selectedCell.superview?.convert(selectedCell.frame, to: nil)
+        
+        guard let snapshotCell = selectedCell.snapshotView(afterScreenUpdates: false) else { return }
+        focusedView = UIView(frame: startingFrame ?? .zero)
+        guard let focusedView else { return }
+        focusedView.isUserInteractionEnabled = false
+        let tapGesture = UITapGestureRecognizer(target: self,
+                                                action: #selector(dismissContextMenu)
+        )
+        
+        let blurEffect = UIBlurEffect(style: .regular)
+        blurView = UIVisualEffectView(effect: blurEffect)
+        guard let blurView else { return }
+        blurView.contentView.isUserInteractionEnabled = true
+        blurView.contentView.addGestureRecognizer(tapGesture)
+        blurView.alpha = 0
+      
+        highlightedCell = selectedCell
+        highlightedCell?.alpha = 0
+        
+        guard let keyWindow = UIWindowScene.current?.keyWindow else { return }
+        blurView.frame = keyWindow.frame
+        keyWindow.addSubview(blurView)
+        keyWindow.addSubview(focusedView)
+        focusedView.addSubview(snapshotCell)
+        
+        UIView.animate(
+            withDuration: 0.6,
+            delay: 0,
+            usingSpringWithDamping: 0.7,
+            initialSpringVelocity: 1,
+            options: .curveEaseIn) {
+                focusedView.center.y = keyWindow.center.y
+                snapshotCell.frame = focusedView.bounds
+                blurView.alpha = 1
+            }
+        
+//        snapshotView.frame = selectedCell.frame
+//        snapshotView.center.y = view.center.y
+        
+
+//        UIApplication.dismissKeyboard()
+//        let message = viewModel.messages[indexPath.item]
+//        switch message.type {
+//        case .video:
+//            guard let videoURLString = message.videoURL,
+//                  let videoURL = URL(string: videoURLString) else { return }
+//            viewModel.showMediaPlayer(videoURL)
+//        default:
+//            break
+//        }
+    }
+    
+    @objc private func dismissContextMenu() {
+        print("dismissContextMenu")
+        
+        UIView.animate(
+            withDuration: 0.6,
+            delay: 0,
+            usingSpringWithDamping: 0.8,
+            initialSpringVelocity: 1,
+            options: .curveEaseOut) { [weak self] in
+                guard let self else { return }
+                focusedView?.frame = startingFrame ?? .zero
+                blurView?.alpha = 0
+            } completion: { [weak self] _ in
+                self?.blurView?.removeFromSuperview()
+                self?.focusedView?.removeFromSuperview()
+                self?.highlightedCell?.alpha = 1
+                
+                // Clearing References
+                self?.highlightedCell = nil
+                self?.blurView = nil
+                self?.focusedView = nil
+            }
     }
     
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
@@ -225,4 +300,5 @@ private extension UICollectionView {
 #Preview {
     MessageListView(viewModel: ChatRoomViewModel(channel: .placeholder))
         .ignoresSafeArea()
+        .environmentObject(VoiceMessagePlayer())
 }
