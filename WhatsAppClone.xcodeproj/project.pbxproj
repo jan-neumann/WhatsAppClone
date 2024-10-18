@@ -40,6 +40,7 @@
 		9D2724BD2BF5CB9D003BFDA1 /* WhatsAppCloneUITestsLaunchTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2724BC2BF5CB9D003BFDA1 /* WhatsAppCloneUITestsLaunchTests.swift */; };
 		9D2724CA2BF5CCF4003BFDA1 /* MainTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2724C92BF5CCF4003BFDA1 /* MainTabView.swift */; };
 		9D2724CC2BF5D457003BFDA1 /* UpdatesTabScreen.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D2724CB2BF5D457003BFDA1 /* UpdatesTabScreen.swift */; };
+		9D3740052CC2238200AC445E /* ReactionPickerView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3740042CC2238200AC445E /* ReactionPickerView.swift */; };
 		9D3CFC352C32783A0034ADB4 /* ChannelCreationTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3CFC342C32783A0034ADB4 /* ChannelCreationTextView.swift */; };
 		9D3CFC372C327A310034ADB4 /* AdminMessageTextView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D3CFC362C327A310034ADB4 /* AdminMessageTextView.swift */; };
 		9D4348262C9A9A7B00459E51 /* UIWindowScene+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 9D4348252C9A9A7B00459E51 /* UIWindowScene+Extensions.swift */; };
@@ -131,6 +132,7 @@
 		9D2724BC2BF5CB9D003BFDA1 /* WhatsAppCloneUITestsLaunchTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WhatsAppCloneUITestsLaunchTests.swift; sourceTree = "<group>"; };
 		9D2724C92BF5CCF4003BFDA1 /* MainTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MainTabView.swift; sourceTree = "<group>"; };
 		9D2724CB2BF5D457003BFDA1 /* UpdatesTabScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UpdatesTabScreen.swift; sourceTree = "<group>"; };
+		9D3740042CC2238200AC445E /* ReactionPickerView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ReactionPickerView.swift; sourceTree = "<group>"; };
 		9D3CFC342C32783A0034ADB4 /* ChannelCreationTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChannelCreationTextView.swift; sourceTree = "<group>"; };
 		9D3CFC362C327A310034ADB4 /* AdminMessageTextView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AdminMessageTextView.swift; sourceTree = "<group>"; };
 		9D4348252C9A9A7B00459E51 /* UIWindowScene+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UIWindowScene+Extensions.swift"; sourceTree = "<group>"; };
@@ -446,6 +448,7 @@
 				9D3CFC342C32783A0034ADB4 /* ChannelCreationTextView.swift */,
 				9D3CFC362C327A310034ADB4 /* AdminMessageTextView.swift */,
 				9D9DEF3A2C86E22100ADE20F /* MediaAttachmentPreview.swift */,
+				9D3740042CC2238200AC445E /* ReactionPickerView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -775,6 +778,7 @@
 				9D07CAD92C1033D4007E2A12 /* GroupPartnerPickerScreen.swift in Sources */,
 				9D18DD122C06EE8000CB5B54 /* AuthTextField.swift in Sources */,
 				9DADE27A2BFF08DF00554295 /* BubbleTextView.swift in Sources */,
+				9D3740052CC2238200AC445E /* ReactionPickerView.swift in Sources */,
 				9DADE2782BFF081400554295 /* MessageItem.swift in Sources */,
 				9DA4014B2BFC656E0098A303 /* ChannelItemView.swift in Sources */,
 				9DFE66C92C3512C9009A3860 /* Date+Extensions.swift in Sources */,
