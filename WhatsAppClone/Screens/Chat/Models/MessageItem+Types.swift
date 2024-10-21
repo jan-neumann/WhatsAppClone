@@ -7,6 +7,25 @@
 
 import Foundation
 
+enum MessageMenuAction: String, CaseIterable, Identifiable {
+    case reply, forward, copy, delete
+    
+    var id: String { rawValue }
+    
+    var systemImage: String {
+        switch self {
+        case .reply:
+            return "arrowshape.turn.up.left"
+        case .forward:
+            return "paperplane"
+        case .copy:
+            return "doc.on.doc"
+        case .delete:
+            return "trash"
+        }
+    }
+}
+
 enum Reaction: Int {
     case like
     case heart

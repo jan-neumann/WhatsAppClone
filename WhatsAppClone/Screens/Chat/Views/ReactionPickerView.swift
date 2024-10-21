@@ -60,12 +60,22 @@ struct ReactionPickerView: View {
                 .scaleEffect(emojiStates[index].isAnimating ? 1 : 0.01)
                 .opacity(item.opacity)
                 .onAppear {
+                    let dynamicIndex = getAnimationIndex(index)
                     DispatchQueue.main.asyncAfter(deadline: .now() + 0.2) {
-                        withAnimation(springAnimation.delay(Double(index) * 0.05)) {
-                            emojiStates[index].isAnimating = true
+                        withAnimation(springAnimation.delay(Double(dynamicIndex) * 0.05)) {
+                            emojiStates[dynamicIndex].isAnimating = true
                         }
                     }
                 }
+        }
+    }
+    
+    private func getAnimationIndex(_ index: Int) -> Int {
+        if message.direction == .sent {
+            let reversedIndex = emojiStates.count - 1 - index
+            return reversedIndex
+        } else {
+            return index
         }
     }
     
@@ -103,6 +113,10 @@ struct ReactionPickerView: View {
     ZStack {
         Rectangle()
             .fill(.thinMaterial)
-        ReactionPickerView(message: .receivedPlaceHolder)
+        VStack {
+            ReactionPickerView(message: .receivedPlaceHolder)
+                .padding(.bottom)
+            ReactionPickerView(message: .sentPlaceHolder)
+        }
     }
 }
