@@ -93,6 +93,8 @@ final class MessageListController: UIViewController {
     private var blurView: UIVisualEffectView?
     private var focusedView: UIView?
     private var highlightedCell: UICollectionViewCell?
+    private var reactionHostVC: UIViewController?
+    private var messageMenuHostVC: UIViewController?
     
     private let pullDownToRefreshView: UIButton = {
         var buttonConfig = UIButton.Configuration.filled()
@@ -197,6 +199,7 @@ extension MessageListController: UICollectionViewDelegate, UICollectionViewDataS
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
+        let message = viewModel.messages[indexPath.item]
         guard let selectedCell = collectionView.cellForItem(at: indexPath) else { return }
 
         startingFrame = selectedCell.superview?.convert(selectedCell.frame, to: nil)
@@ -224,22 +227,26 @@ extension MessageListController: UICollectionViewDelegate, UICollectionViewDataS
         keyWindow.addSubview(blurView)
         keyWindow.addSubview(focusedView)
         focusedView.addSubview(snapshotCell)
-        
+        attachMenuActionItems(to: message, in: keyWindow)
         UIView.animate(
             withDuration: 0.6,
             delay: 0,
             usingSpringWithDamping: 0.7,
             initialSpringVelocity: 1,
             options: .curveEaseIn) {
-                focusedView.center.y = keyWindow.center.y
-                snapshotCell.frame = focusedView.bounds
                 blurView.alpha = 1
+                focusedView.center.y = keyWindow.center.y - 60
+                snapshotCell.frame = focusedView.bounds
+               
+                snapshotCell.layer.applyShadow(
+                    color: UIColor.gray,
+                    alpha: 0.2,
+                    x: 0,
+                    y: 2,
+                    blur: 4
+                )
             }
         
-//        snapshotView.frame = selectedCell.frame
-//        snapshotView.center.y = view.center.y
-        
-
 //        UIApplication.dismissKeyboard()
 //        let message = viewModel.messages[indexPath.item]
 //        switch message.type {
@@ -250,6 +257,39 @@ extension MessageListController: UICollectionViewDelegate, UICollectionViewDataS
 //        default:
 //            break
 //        }
+    }
+    
+    private func attachMenuActionItems(to message: MessageItem, in window: UIWindow) {
+        /// Convert a SwiftUI view to a UIKit view
+        guard let focusedView, let startingFrame else { return }
+        
+        let reactionPickerView = ReactionPickerView(message: message)
+        let reactionHostVC = UIHostingController(rootView: reactionPickerView)
+        guard let reactionView = reactionHostVC.view else { return }
+        reactionView.backgroundColor = .clear
+        reactionView.translatesAutoresizingMaskIntoConstraints = false
+        window.addSubview(reactionView)
+        reactionView.bottomAnchor.constraint(equalTo: focusedView.topAnchor, constant: 5)
+            .isActive = true
+        reactionView.leadingAnchor.constraint(equalTo: focusedView.leadingAnchor, constant: 20)
+            .isActive = message.direction == .received
+        reactionView.trailingAnchor.constraint(equalTo: focusedView.trailingAnchor, constant: -20)
+            .isActive = message.direction == .sent
+        
+        let messagMenuView = MessageMenuView(message: message)
+        let messageMenuHostVC = UIHostingController(rootView: messagMenuView)
+        messageMenuHostVC.view.backgroundColor = .clear
+        messageMenuHostVC.view.translatesAutoresizingMaskIntoConstraints = false
+        window.addSubview(messageMenuHostVC.view)
+        messageMenuHostVC.view.topAnchor.constraint(equalTo: focusedView.bottomAnchor, constant: 0)
+            .isActive = true
+        messageMenuHostVC.view.leadingAnchor.constraint(equalTo: focusedView.leadingAnchor, constant: 20)
+            .isActive = message.direction == .received
+        messageMenuHostVC.view.trailingAnchor.constraint(equalTo: focusedView.trailingAnchor, constant: -20)
+            .isActive = message.direction == .sent
+        
+        self.reactionHostVC = reactionHostVC
+        self.messageMenuHostVC = messageMenuHostVC
     }
     
     @objc private func dismissContextMenu() {
@@ -263,6 +303,8 @@ extension MessageListController: UICollectionViewDelegate, UICollectionViewDataS
             options: .curveEaseOut) { [weak self] in
                 guard let self else { return }
                 focusedView?.frame = startingFrame ?? .zero
+                reactionHostVC?.view.removeFromSuperview()
+                messageMenuHostVC?.view.removeFromSuperview()
                 blurView?.alpha = 0
             } completion: { [weak self] _ in
                 self?.blurView?.removeFromSuperview()
@@ -273,6 +315,8 @@ extension MessageListController: UICollectionViewDelegate, UICollectionViewDataS
                 self?.highlightedCell = nil
                 self?.blurView = nil
                 self?.focusedView = nil
+                self?.reactionHostVC = nil
+                self?.messageMenuHostVC = nil
             }
     }
     
@@ -282,6 +326,16 @@ extension MessageListController: UICollectionViewDelegate, UICollectionViewDataS
         } else {
             pullDownToRefreshView.alpha = 0
         }
+    }
+}
+
+private extension CALayer {
+    func applyShadow(color: UIColor, alpha: Float, x: CGFloat, y: CGFloat, blur: CGFloat) {
+        self.shadowColor = color.cgColor
+        self.shadowOpacity = alpha
+        self.shadowOffset = .init(width: x, height: y)
+        self.shadowRadius = blur
+        masksToBounds = false
     }
 }
 
