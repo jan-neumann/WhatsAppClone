@@ -80,6 +80,15 @@ enum MessageType: Hashable {
         }
     }
     
+    var isAdminMessage: Bool {
+        switch self {
+        case .admin:
+            return true
+        default:
+            return false
+        }
+    }
+    
     var iconName: String {
         switch self {
         case .admin:

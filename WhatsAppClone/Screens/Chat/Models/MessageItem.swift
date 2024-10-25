@@ -91,7 +91,8 @@ struct MessageItem: Identifiable {
         .init(id: UUID().uuidString, isGroupChat: false, text: "Hi there", type: .text, ownerUid: "3", timeStamp: .now, thumbnailURL: nil),
         .init(id: UUID().uuidString, isGroupChat: true, text: "Check out this photo", type: .photo, ownerUid: "4", timeStamp: .now, thumbnailURL: nil),
         .init(id: UUID().uuidString, isGroupChat: false, text: "Play this video", type: .video, ownerUid: "5", timeStamp: .now, thumbnailURL: nil),
-        .init(id: UUID().uuidString, isGroupChat: true, text: "Listen to this audio", type: .audio, ownerUid: "6", timeStamp: .now, thumbnailURL: nil)
+        .init(id: UUID().uuidString, isGroupChat: true, text: "Listen to this audio", type: .audio, ownerUid: "6", timeStamp: .now, thumbnailURL: nil),
+        .init(id: UUID().uuidString, isGroupChat: true, text: "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.", type: .text, ownerUid: "7", timeStamp: .now + 100000, thumbnailURL: nil)
     ]
 }
 
