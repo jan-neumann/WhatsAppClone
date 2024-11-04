@@ -153,7 +153,7 @@ final class ChatRoomViewModel: ObservableObject {
                 self?.scrollToBottom(isAnimated: true)
             }
         }
-
+        
     }
     
     private func scrollToBottom(isAnimated: Bool) {
@@ -179,18 +179,18 @@ final class ChatRoomViewModel: ObservableObject {
         attachment: MediaAttachment,
         completion: @escaping(_ fileUrl: URL) -> Void) {
             
-        guard let url = attachment.fileURL else { return }
-        FirebaseHelper.uploadFile(for: uploadType, fileURL: url) { result in
-            switch result {
-            case .success(let fileUrl):
-                completion(fileUrl)
-            case .failure(let error):
-                print("Failed to upload File to Storage: \(error.localizedDescription)")
+            guard let url = attachment.fileURL else { return }
+            FirebaseHelper.uploadFile(for: uploadType, fileURL: url) { result in
+                switch result {
+                case .success(let fileUrl):
+                    completion(fileUrl)
+                case .failure(let error):
+                    print("Failed to upload File to Storage: \(error.localizedDescription)")
+                }
+            } progressHandler: { progress in
+                print("UPLOAD FILE PROGRESS: \(progress)")
             }
-        } progressHandler: { progress in
-            print("UPLOAD FILE PROGRESS: \(progress)")
         }
-    }
     
     private func sendVideoMessage(text: String, _ attachment: MediaAttachment) {
         /// Uploads the video file to the storage bucket
@@ -351,8 +351,8 @@ final class ChatRoomViewModel: ObservableObject {
         for photoItem in photoPickerItems {
             if photoItem.isVideo {
                 if let movie = try? await photoItem.loadTransferable(type: VideoPickerTransferable.self),
-                    let thumbnailImage = try? await movie.url.generateVideoThumbnail(),
-                    let itemIdentifier = photoItem.itemIdentifier {
+                   let thumbnailImage = try? await movie.url.generateVideoThumbnail(),
+                   let itemIdentifier = photoItem.itemIdentifier {
                     let videoAttachment = MediaAttachment(id: itemIdentifier, type: .video(thumbnailImage, movie.url))
                     self.mediaAttachments.insert(videoAttachment, at: 0)
                 }
@@ -422,6 +422,13 @@ final class ChatRoomViewModel: ObservableObject {
         } else {
             /// If it's not sent by current user && is a group chat && the message before this one is not sent by the same sender
             return !message.isSentByCurrentUser && !message.containsSameOwner(as: priorMessage)
+        }
+    }
+    
+    func addReaction(_ reaction: Reaction, to message: MessageItem) {
+        guard let currentUser else { return }
+        MessageService.addReaction(reaction, to: message, in: channel, from: currentUser) { emojiCount in
+            print("reacted to message with \(reaction.emoji) count is \(emojiCount)")
         }
     }
 }
