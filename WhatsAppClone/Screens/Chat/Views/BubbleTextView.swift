@@ -38,6 +38,10 @@ struct BubbleTextView: View {
         .frame(maxWidth: .infinity, alignment: item.alignment)
         .padding(.leading, item.leadingPadding)
         .padding(.trailing, item.trailingPadding)
+        .overlay(alignment: item.reactionAnchor) {
+            MessageReactionView(message: item)
+                .offset(x: item.showGroupPartnerInfo ? 50 : 0, y: 10)
+        }
     }
     
     private func timeStampTextView() -> some View {
@@ -50,7 +54,7 @@ struct BubbleTextView: View {
 #Preview {
     ScrollView {
         ForEach(0..<20) { _ in
-            BubbleTextView(item: [MessageItem.sentPlaceHolder, MessageItem.receivedPlaceHolder].randomElement()!)
+            BubbleTextView(item: MessageItem.stubMessages.randomElement()!)
         }
     }
     .frame(maxWidth: .infinity)
