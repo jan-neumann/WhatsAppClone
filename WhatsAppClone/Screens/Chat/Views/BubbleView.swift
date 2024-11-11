@@ -15,7 +15,6 @@ struct BubbleView: View {
     let showSenderName: Bool
     
     var body: some View {
-        
         VStack(alignment: .leading, spacing: 0) {
             if isNewDay {
                 newDayTimeStampTextView()
@@ -29,6 +28,7 @@ struct BubbleView: View {
             composeDynamicBubbleView()
         }
         .frame(maxWidth: .infinity)
+        .padding(.bottom, message.hasReactions ? 8 : 0)
     }
     
     @ViewBuilder

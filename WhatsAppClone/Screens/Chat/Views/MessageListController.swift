@@ -241,7 +241,9 @@ private extension MessageListController {
         let message = viewModel.messages[indexPath.item]
         guard !message.type.isAdminMessage else { return }
         guard let selectedCell = messagesCollectionView.cellForItem(at: indexPath) else { return }
-
+        
+        Haptics.impact(.medium)
+        
         startingFrame = selectedCell.superview?.convert(selectedCell.frame, to: nil)
         
         guard let snapshotCell = selectedCell.snapshotView(afterScreenUpdates: false) else { return }

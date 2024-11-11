@@ -109,6 +109,8 @@
 		9D07CAD32C102B52007E2A12 /* ChatPartnerRowView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPartnerRowView.swift; sourceTree = "<group>"; };
 		9D07CAD62C103186007E2A12 /* ChatPartnerPickerViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ChatPartnerPickerViewModel.swift; sourceTree = "<group>"; };
 		9D07CAD82C1033D4007E2A12 /* GroupPartnerPickerScreen.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GroupPartnerPickerScreen.swift; sourceTree = "<group>"; };
+		9D08661B2CE1DF3900ED7F7E /* WhatsAppClone.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = WhatsAppClone.entitlements; sourceTree = "<group>"; };
+		9D08661C2CE1DF4100ED7F7E /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		9D0D5C662C33C85C00BA3DAE /* CircularProfileImageView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CircularProfileImageView.swift; sourceTree = "<group>"; };
 		9D0E712A2CA3D99300AB7C7E /* Haptics.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Haptics.swift; sourceTree = "<group>"; };
 		9D10E2F72CC619D50040D0B6 /* MessageMenuView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MessageMenuView.swift; sourceTree = "<group>"; };
@@ -277,6 +279,8 @@
 		9D27249E2BF5CB9B003BFDA1 /* WhatsAppClone */ = {
 			isa = PBXGroup;
 			children = (
+				9D08661C2CE1DF4100ED7F7E /* Info.plist */,
+				9D08661B2CE1DF3900ED7F7E /* WhatsAppClone.entitlements */,
 				9D5FDE902C2E84FB00472AFC /* GoogleService-Info.plist */,
 				9D27249F2BF5CB9B003BFDA1 /* WhatsAppCloneApp.swift */,
 				9D2724C92BF5CCF4003BFDA1 /* MainTabView.swift */,
@@ -959,12 +963,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WhatsAppClone/WhatsAppClone.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WhatsAppClone/Preview Content\"";
 				DEVELOPMENT_TEAM = 2GW6QU3PCC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WhatsAppClone/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Access to this lets you record voice messages";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
@@ -990,12 +996,14 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = WhatsAppClone/WhatsAppClone.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_ASSET_PATHS = "\"WhatsAppClone/Preview Content\"";
 				DEVELOPMENT_TEAM = 2GW6QU3PCC;
 				ENABLE_PREVIEWS = YES;
 				GENERATE_INFOPLIST_FILE = YES;
+				INFOPLIST_FILE = WhatsAppClone/Info.plist;
 				INFOPLIST_KEY_NSMicrophoneUsageDescription = "Access to this lets you record voice messages";
 				INFOPLIST_KEY_UIApplicationSceneManifest_Generation = YES;
 				INFOPLIST_KEY_UIApplicationSupportsIndirectInputEvents = YES;
