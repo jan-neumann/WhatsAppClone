@@ -46,6 +46,9 @@ extension AppDelegate: UNUserNotificationCenterDelegate, MessagingDelegate {
     
     func messaging(_ messaging: Messaging, didReceiveRegistrationToken fcmToken: String?) {
         print("APNS device token is: \(String(describing: fcmToken))")
+        guard let currentUid = Auth.auth().currentUser?.uid,
+              let fcmToken = fcmToken else { return }
+        FirebaseConstants.UserRef.child(currentUid).child("fcmToken").setValue(fcmToken)
     }
     
     func application(_ application: UIApplication, didRegisterForRemoteNotificationsWithDeviceToken deviceToken: Data) {

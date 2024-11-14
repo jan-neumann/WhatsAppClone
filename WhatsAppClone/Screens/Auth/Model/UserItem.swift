@@ -13,7 +13,8 @@ struct UserItem: Identifiable, Hashable, Decodable {
     let email: String
     var bio: String?
     var profileImageUrl: String? = nil
-    
+    var fcmToken: String?
+
     var id: String {
         return uid
     }
@@ -46,6 +47,7 @@ extension UserItem {
         self.email = dictionary[.email] as? String ?? ""
         self.bio = dictionary[.bio] as? String ?? nil
         self.profileImageUrl = dictionary[.profileImageUrl] as? String ?? nil
+        self.fcmToken = dictionary[.fcmToken] as? String ?? nil
     }
 }
 
@@ -55,5 +57,6 @@ extension String {
     static let email = "email"
     static let bio = "bio"
     static let profileImageUrl = "profileImageUrl"
+    static let fcmToken = "fcmToken"
 }
 
